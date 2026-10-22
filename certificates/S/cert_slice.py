@@ -116,10 +116,12 @@ class Cells:
         self.slo_f = np.array([float(x.mid()) for x in self.slo])
         self.shi_f = np.array([float(x.mid()) for x in self.shi])
 
-def certified_p(cells, idx, nu, nu_a, w, w_a, L0, L0_a, which):
+def certified_p(cells, idx, nu, nu_a, w, w_a, L0, L0_a, which, start=None):
     """sum over cells idx of p*dth with p = pmax (which='max', lower-bounded) or pmin (which='min', upper-bounded);
     every chosen p is verified (arb) to satisfy ghat >= 0 on its cell.  Returns arb sum (lower bound for 'max',
-    upper bound for 'min'), or None if some cell is infeasible."""
+    upper bound for 'min'), or None if some cell is infeasible.
+    If start is given, integrate the first cell only from that Arb endpoint.
+    Feasibility is still checked on the whole cell, including the true pi/2."""
     if len(idx) == 0:
         return arb(0)
     slo = cells.slo_f[idx]; shi = cells.shi_f[idx]
@@ -146,7 +148,11 @@ def certified_p(cells, idx, nu, nu_a, w, w_a, L0, L0_a, which):
             else:
                 return None
         if which != 'any':
-            tot += arb(p) * cells.dth[i]
+            width = cells.dth[i]
+            if j == 0 and start is not None:
+                assert cells.A[i] <= start and start < cells.A[i + 1]
+                width = cells.A[i + 1] - start
+            tot += arb(p) * width
     return tot
 
 def run(L0s, ws, mlos, mhis, K, fine=1e-5, verbose=True, thb=0.25):
@@ -182,7 +188,7 @@ def run(L0s, ws, mlos, mhis, K, fine=1e-5, verbose=True, thb=0.25):
               % (len(nodes) - 1, thb, thR, ttop, len(lev), lo(sig_lo), ws, mhis, L0s), flush=True)
     rng = lambda a, b: np.arange(a, b)
     # A_k for all levels at once (nu = w): cumulative pmax(w) from pi/2
-    base_w = certified_p(cells, rng(i_half, i_R), w, w_a, w, w_a, L0, L0_a, 'max')
+    base_w = certified_p(cells, rng(i_half, i_R), w, w_a, w, w_a, L0, L0_a, 'max', start=PI / 2)
     A = {}
     acc = base_w
     prev = i_R
@@ -190,7 +196,7 @@ def run(L0s, ws, mlos, mhis, K, fine=1e-5, verbose=True, thb=0.25):
         acc = acc + certified_p(cells, rng(prev, li), w, w_a, w, w_a, L0, L0_a, 'max'); prev = li
         A[li] = w_a * TAU + acc
     dip = w_a * TAU + certified_p(cells, rng(0, i_R), w, w_a, w, w_a, L0, L0_a, 'max')
-    res = {'dip': lo(dip), 'top': lo(A[lev[-1]]), 'cases': [], 'pi2_cells': [(float(cells.nodes[i]), float(cells.nodes[i + 1])) for i in cells.fixed]}
+    res = {'dip': lo(dip), 'top': lo(A[lev[-1]]), 'cases': [], 'pi2_cells': [(float(cells.nodes[i]), float(cells.nodes[i + 1])) for i in cells.fixed], 'initial_angle': 'Arb pi/2; first integration cell clipped', 'grid_origin_offset_arb': (PI / 2 - cells.A[i_half]).str(25, radius=True)}
     # all comparisons in arb; floats (directed rounding, revAC/S1D patch 2) only for printing / json
     worst = dip.lower().min(A[lev[-1]].lower())
     for k in range(len(lev) - 1):
@@ -203,7 +209,7 @@ def run(L0s, ws, mlos, mhis, K, fine=1e-5, verbose=True, thb=0.25):
             nu_a = arb(nu)
             feas = certified_p(cells, rng(0, lk1), nu, nu_a, w, w_a, L0, L0_a, 'any')
             if feas is not None:
-                pm = certified_p(cells, rng(i_half, lk), nu, nu_a, w, w_a, L0, L0_a, 'max')
+                pm = certified_p(cells, rng(i_half, lk), nu, nu_a, w, w_a, L0, L0_a, 'max', start=PI / 2)
                 pn = certified_p(cells, rng(i_R, lk), nu, nu_a, w, w_a, L0, L0_a, 'min')
                 if pm is not None and pn is not None:
                     Bk = nu_a * TAU + pm - pn

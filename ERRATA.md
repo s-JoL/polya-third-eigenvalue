@@ -23,3 +23,11 @@ Some old logs rounded a lower bound to the nearest seven-place decimal. For exam
 ## The small-window barrier
 
 The piecewise affine function is Θ; the actual comparison function is ρ = 20 cot Θ and is piecewise smooth. The paper states the conditions for Θ and derives the corresponding conditions for ρ. Earlier descriptions that called ρ piecewise affine should be read with this correction.
+
+## True initial angle in the large-window verifier (post-v0.2.0)
+
+The angular grid contains the exact binary64 value `math.pi / 2`, which lies just below the mathematical initial angle. The previous accumulation of A and B included the short interval between these two points. Checking the sine extremum on that cell did not correct its integration length.
+
+The verifier now clips the first integration cell to the Arb enclosure of the true pi/2, in both the A and B bounds. All slope feasibility checks still cover the full original cell. The dip bound starts at the prescribed floor and requires no such correction. Replay records store the initial-angle convention and the enclosed grid-origin offset. Historical S receipts remain available but do not certify the corrected implementation.
+
+Fresh replay of the corrected source passed all eight S intervals, all nine T boxes, B and the neck calculation, together with their stronger-bound and corrupted-node controls. The smallest S mass margin exceeds 0.00114; all downward-rounded bounds displayed in the article remain valid. Records are in `verification/revision-2026-10-22/certificates/`.

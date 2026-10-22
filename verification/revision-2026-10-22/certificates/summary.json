@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "origin": "Arb pi/2, clipped first integration cell",
+  "certificate_groups": [
+    "B",
+    "T",
+    "S",
+    "N"
+  ],
+  "small_window_boxes": 9,
+  "triangles_per_box": 192000,
+  "large_window_intervals": 8,
+  "smallest_S_margin": 0.0011411873117766662,
+  "displayed_paper_bounds_checked": true,
+  "full_pde_formalization": false,
+  "all_source_hashes_unchanged_during_run": true
+}

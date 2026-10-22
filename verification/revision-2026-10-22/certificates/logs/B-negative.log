@@ -1,0 +1,10 @@
+eps_cert >= 0.08792934737530397  target 0.09
+FAIL start
+  i 7 tets 1824 boxes 1844 fails 0 0s
+  i 15 tets 3648 boxes 3722 fails 0 0s
+  i 23 tets 5472 boxes 5582 fails 0 0s
+  i 31 tets 7296 boxes 7406 fails 0 1s
+tets 8664 boxes 8884 fails 0
+FAILED  eps_cert >= 0.08792934737530397
+
+STDERR
