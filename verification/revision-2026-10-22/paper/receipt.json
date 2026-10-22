@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "source_hashes": {
+    "single-profile.tex": "980945cf6b4c79ae94b4d5dbbf74c5965ba824e7d6792e2085a0021c2d903bb3",
+    "main.tex": "c2254905c68faf1c34b495228a66384a042965be13199e83e1bbb2f3e7dc1eb6",
+    "geometry.tex": "81eefb612a2f81c46ad737c2aa14eb260cf82d4a677760b80bbb2fce62b6862f",
+    "appendix.tex": "9c33806a66c6918daf6acd0ee64efb5afee554f89c3f701c814b168cc354a9be",
+    "pair-profile.tex": "be68b84c86c2bbdc8e748edb284b6cf5e6bf6e924505d309e5a7abd7a1507fb1",
+    "certificates.tex": "42b60df800bcdd4fb85b3afab56b10a03ab3e5ff9f0c4d1c199f6b8361153c2f"
+  },
+  "pdf_sha256": "a3a1447937bbed9064046360231d9de99dad95e310a1f6a076046df9e3003131",
+  "compiler": "Tectonic 0.17.0",
+  "no_overfull_boxes_or_unresolved_references": true
+}

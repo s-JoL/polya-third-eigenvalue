@@ -1,5 +1,15 @@
 \section{The finite certificates}\label{sec:cert}
-It remains to verify a finite collection of inequalities. We describe the objects being certified, the exact tests applied to them, and the resulting bounds. The certificate arrays are supplied as supplementary data. Their construction plays no part in verification: the tests use the fixed arrays and do not run an optimizer.
+It remains to verify a finite collection of inequalities. We describe the objects being certified, the exact tests applied to them, and the resulting bounds. We label the four calculations B (pair profiles), T (small windows), S (large windows), and N (the neck). The certificate arrays are supplied as supplementary data. Their construction plays no part in verification: the tests use the fixed arrays and do not run an optimizer.
+
+\begin{center}
+\begin{tabular}{>{\raggedright\arraybackslash}p{.06\textwidth}>{\raggedright\arraybackslash}p{.31\textwidth}>{\raggedright\arraybackslash}p{.49\textwidth}}\toprule
+Test & Range & Certified condition and use\\\midrule
+B & Combined half-area $\le1/2$, width threshold $.9$ & Excess mass $>.0879293>.0872$; Proposition~\ref{prop:pair}.\\
+T & $m'\in[.03,.2282]$, $w_*\le.241$; nine boxes & Both inequalities in~\eqref{eq:rho} on all 192000 triangles per box; Lemma~\ref{lem:bv-comparison}.\\
+S & $m'\in[.108,.2282]$, $w_*\ge.240$; eight intervals & Required mass exceeds the upper endpoint of each interval; the table below records the bounds.\\
+N & $m'\le.03$, support area $\le.519$ & Riccati comparison at $L=45.8318>12\pi$; inequality~\eqref{eq:neck-quotient}.\\\bottomrule
+\end{tabular}
+\end{center}
 
 \subsection{The pair-profile certificate}
 The pair-profile certificate is a continuous piecewise affine function on 8664 Kuhn tetrahedra. The underlying box grid has $38\times38\times1$ cells, with $U_1,U_2\in[0,2]$ and
@@ -66,7 +76,7 @@ $[.224,.2265]$ & $.229296$ & $.240$\\
 $[.2265,.2282]$ & $.229341$ & $.240$\\\bottomrule
 \end{tabular}
 \end{center}
-Every bound exceeds the upper endpoint of its mass interval. Candidate slopes are chosen numerically, then independently tested by interval evaluation of~\eqref{eq:potential}. The cell containing the true $\pi/2$ includes the value $\sin^2\theta=1$. Interval-to-floating conversions used in bounds are rounded outwards and checked; the final positivity test uses Arb intervals.
+Every bound exceeds the upper endpoint of its mass interval. Candidate slopes are chosen numerically, then independently tested by interval evaluation of~\eqref{eq:potential}. The cell containing the true $\pi/2$ includes the value $\sin^2\theta=1$. The grid node near the initial angle is a dyadic approximation $h$ to $\pi/2$. In every integral starting at $\pi/2$, the first cell contributes $p(\theta_{i+1}-\pi/2)$, evaluated with Arb, rather than $p(\theta_{i+1}-h)$. Feasibility of the slope is checked on the whole cell. Thus the initial angle in both $A_k$ and $B_k$ is the mathematical $\pi/2$, including its rounding enclosure. Interval-to-floating conversions used in bounds are rounded outwards and checked; the final positivity test uses Arb intervals.
 
 For the neck estimate, the Riccati function starts with the disk solution
 \[

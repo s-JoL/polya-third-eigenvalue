@@ -14,6 +14,10 @@ The proof chooses an area-bisecting line and reflects the two halves. Two estima
 
 The paper gives the mathematical argument and verification criteria. The computational supplement supplies the certificate arrays, executable checks, and Lean source. This is a research preprint, not a claim of journal acceptance.
 
+## Current revision
+
+The revised manuscript expands the analytic bridges and corrects the true π/2 integration endpoint in S. See [revision notes](REVISION.md), the [supplement map](SUPPLEMENT-MAP.md), and the fresh records in `verification/revision-2026-10-22/`. The previous release remains available as a historical version. Lean development is kept on a separate branch and has not completed the main theorem.
+
 ## Verification
 
 | Material | What it establishes |

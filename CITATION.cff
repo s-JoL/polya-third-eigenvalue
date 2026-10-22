@@ -2,9 +2,7 @@ cff-version: 1.2.0
 message: "Please cite the accompanying preprint when using this work."
 title: "Pólya's inequality for the third planar Dirichlet eigenvalue"
 type: software
-version: 0.2.0
 license: MIT
-date-released: 2026-10-22
 repository-code: "https://github.com/s-JoL/polya-third-eigenvalue"
 authors:
   - family-names: Song

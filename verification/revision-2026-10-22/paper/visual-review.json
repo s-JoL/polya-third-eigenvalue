@@ -1,0 +1,9 @@
+{
+  "pages": 18,
+  "pdf_sha256": "a3a1447937bbed9064046360231d9de99dad95e310a1f6a076046df9e3003131",
+  "all_pages_rendered": true,
+  "author": "Liang Song",
+  "no_unresolved_references": true,
+  "visual_review": "PASS: all 18 pages inspected after final render; no clipped text, overlaps or broken references",
+  "render_scale": 1.4
+}

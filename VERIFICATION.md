@@ -47,3 +47,7 @@ The second command recompiles every source with warnings treated as errors and k
 `verification/v0.2.0/` contains the replay receipts, source hashes and relevant logs for this release. They are retained to make the reported checks inspectable; running the commands above supplies fresh evidence. Continuous-analysis arguments and the interpretation of certificate conditions still require mathematical review. This preprint has not been externally peer reviewed.
 
 The old torus checks remain in `scripts/verify.sh` and in continuous integration. They are retained for the earlier public result and are not dependencies of the third-eigenvalue argument.
+
+## Post-v0.2.0 manuscript revision
+
+Fresh records for the true-pi/2 correction are in `verification/revision-2026-10-22/certificates/`. All B/T/S/N gates and negative controls passed. The accompanying `paper/` directory records the final 18-page PDF, exact TeX input hashes, compiler output and visual review. These records supersede the old S endpoint bookkeeping; they make no claim of a newly completed Lean proof or a new CI run.

@@ -9,7 +9,12 @@ for every $k\ge1$. P\'olya proved the conjecture for domains that tile the plane
 \]
 and $j_{0,1}$ is the first positive zero of $J_0$; see~\cite{Henrot} for the classical bounds.
 
-We consider the third eigenvalue, for which the classical two-component estimate no longer reaches the P\'olya constant.
+The third eigenvalue is the first index not settled by these two classical inequalities. They give only
+\[
+ |\Omega|\lambda_3(\Omega)\ge2\kappa=36.3368\ldots,
+ \qquad 12\pi=37.6991\ldots.
+\]
+Our purpose is to cross the P\'olya threshold without restricting the topology of the domain.
 \begin{theorem}\label{thm:main}
 If $\Omega\subset\R^2$ is open and $0<|\Omega|<\infty$, then
 \[
@@ -18,13 +23,27 @@ If $\Omega\subset\R^2$ is open and $0<|\Omega|<\infty$, then
 \end{theorem}
 Here and throughout, area means Lebesgue measure. The operator is defined by the quadratic form $u\mapsto\int_\Omega|\nabla u|^2$ on $H^1_0(\Omega)$. Thus holes contribute no area, all components are included, and no classical boundary trace is needed. The domain is allowed to be unbounded.
 
-Results for every eigenvalue are known for disks and annuli~\cite{Balls,Annuli}. A recent preprint of Tang and Wang~\cite{TangWang} asserts the strict inequality for every bounded simply connected planar domain. Theorem~\ref{thm:main} makes no topological assumption, but concerns only the third eigenvalue. Its proof does not use that preprint.
+Results for every eigenvalue are known for disks and annuli~\cite{Balls,Annuli}. For general bounded planar open sets, a recent preprint of Speciel~\cite{Speciel} gives, among other estimates, $|\Omega|\lambda_k\ge(2/3)4\pi k$. Its strength is a bound valid at every index; at $k=3$ this particular corollary gives $8\pi$.
+A preprint of Tang and Wang~\cite{TangWang} asserts the strict P\'olya inequality at every index for bounded simply connected planar domains. Theorem~\ref{thm:main} concerns one index but allows arbitrary topology, disconnected sets and unbounded sets of finite area. The proof below is independent of both preprints. Filling holes changes the area, while making cuts changes the Dirichlet form domain, so a simply connected result does not directly imply the present statement.
+
+The constant in Theorem~\ref{thm:main} is the conjectured P\'olya constant, not a claimed optimal lower bound for $|\Omega|\lambda_3$. In particular, the theorem does not settle the separate problem of minimizing the third eigenvalue at fixed area.
 
 The main geometric step is a choice of cutting line. Scale the area to one, bisect the set by a line, and reflect each half across it. Neumann bracketing reduces the problem to the second even eigenvalue on each reflected half. A small second even eigenvalue produces two disjoint low-energy pieces. Faber--Krahn forces each piece to have appreciable area, but this alone is insufficient: it gives no information about where that area lies. Our first profile estimate supplies the missing information. It forces each piece to occupy a definite amount of a strip next to the cutting line.
 
 We rotate the bisecting line until the two adjacent strips have equal area. If this area is small, both reflected halves have large second even eigenvalue. If it is large, little area remains outside the full strip. A second profile estimate then works for a perpendicular bisector. These two alternatives cover every set.
 
 Section~\ref{sec:geometry} carries out this geometric argument, assuming the two profile estimates. Sections~\ref{sec:one} and~\ref{sec:two} establish their analytic reductions. The remaining finite inequalities, and the procedures used to verify them, are given in Section~\ref{sec:cert}. The accompanying computational supplement contains the numerical certificate data and implementations of these procedures. No numerical approximation to an eigenvalue of a sample domain is used in the proof.
+The dependencies can be read in the following order.
+\begin{center}
+\begin{tabular}{>{\raggedright\arraybackslash}p{.24\textwidth}>{\raggedright\arraybackslash}p{.64\textwidth}}\toprule
+Step & Input and conclusion\\\midrule
+Cut and reflect & Lemmas~\ref{lem:bracket}--\ref{lem:cores} reduce a small third eigenvalue to two disjoint low-energy pieces.\\
+Single profile & Lemmas~\ref{lem:cap}, \ref{lem:strip-rearrangement}, \ref{lem:window-energy} and \ref{lem:bv-comparison}, with the neck, T and S certificates, prove Proposition~\ref{prop:single}.\\
+Pair of profiles & Section~\ref{sec:two} and certificate B prove Proposition~\ref{prop:pair}.\\
+Choice of direction & Lemma~\ref{lem:strip} and an area bisector with balanced adjacent strips yield Theorem~\ref{thm:main}.\\\bottomrule
+\end{tabular}
+\end{center}
+
 
 \section{The geometric reduction}\label{sec:geometry}
 We use the constants
@@ -55,7 +74,24 @@ Let $V_\pm$ be the closure in $H^1(\Omega_\pm)$ of restrictions of $C_c^\infty(\
 Even reflection maps $V_\pm$ into $H^1_0(S_\pm)^{\ev}$ and multiplies both energy and squared norm by two. This follows first for the restricted smooth functions and then by closure. Another application of min--max proves the claim.
 \end{proof}
 
-Finite area is sufficient for the spectral facts used here. Indeed, zero extension places $H^1_0(\Omega)$ in $H^1(\R^2)$. For any fixed $p>2$, the Sobolev bound and H\"older's inequality make the $L^2$ mass outside a large ball uniformly small on a bounded $H^1$ set, since $|\Omega\setminus B_R|\to0$. Rellich compactness inside the ball then gives compactness of $H^1_0(\Omega)\hookrightarrow L^2(\Omega)$.
+\begin{lemma}[Finite-area spectral setting]\label{lem:finite-area}
+For every open set $U\subset\R^2$ of finite positive area, the Dirichlet form on $H^1_0(U)$ has a discrete positive spectrum, with finite multiplicities and the usual min--max characterization.
+\end{lemma}
+\begin{proof}
+Extend functions by zero to $\R^2$. Faber--Krahn in its support-measure form gives
+\[
+ \norm u_2^2\le\frac{|U|}{\kappa}\norm{\nabla u}_2^2
+ \qquad(u\in H^1_0(U)),
+\]
+first on smooth compactly supported functions and then by density. This makes the Dirichlet form coercive. To prove compactness, let $(u_n)$ be bounded in $H^1_0(U)$ and fix $p>2$. The planar Sobolev inequality and H\"older give
+\[
+ \int_{U\setminus B_R}|u_n|^2
+ \le |U\setminus B_R|^{1-2/p}\norm{u_n}_{L^p(\R^2)}^2
+ \le C|U\setminus B_R|^{1-2/p}.
+\]
+The right-hand side tends to zero uniformly in $n$. Rellich compactness on balls, followed by a diagonal subsequence and this tail bound, gives convergence in $L^2(U)$. The closed-form construction and the spectral theorem for its compact inverse now give the assertion. All multiplicities are retained. In particular, boundedness or boundary regularity of $U$ is not used.
+\end{proof}
+
 
 \begin{lemma}\label{lem:cores}
 There are disjoint open sets $W_1,W_2\subset S_+$, both invariant under $R_L$, such that

@@ -7,6 +7,10 @@ We prove Proposition~\ref{prop:single}. Suppose, to obtain a contradiction, that
 Let $T=\R\times(-\tau,\tau)$, $D=S_c\cap T$, and $\alpha=a-m'$. There are two sources of energy to exploit. Very little area in the central strip creates a narrow neck. Otherwise, the two parts outside the strip force a boundary penalty on its walls. After replacing these outer parts by that penalty, only the size of the nonzero boundary trace remains to be considered.
 
 \subsection{A narrow central strip}
+Assume first that
+\[
+ m'=\int_0^\tau c(y)\dd y\le m_0,\qquad m_0=\frac3{100}.
+\]
 Only the component of $S_c$ that meets $y=0$ needs consideration. Every other component lies in a half-plane and has area at most $a$, so its first eigenvalue is at least $\kappa/a>\Lambda$. The component meeting the axis is unique and symmetric; its positive ground state is even.
 
 Let $U_t$ be a superlevel set of that ground state, of area $s$. Some good horizontal slice $y_t\in(0,\tau)$ has length at most $m_0/\tau$, where $m_0=0.03$. This follows by averaging the section lengths. The part of $U_t$ above that slice has area at least $s/2-m_0$. The isoperimetric inequality, applied to this part and then reflected, gives
@@ -35,7 +39,7 @@ with only upward jumps, then completion of the square and integration by parts y
  &\quad+\int g^2\left(\dd\zeta-\frac{\zeta^2}{I^2}\dd s-L\dd s\right)
    -[\zeta g^2]\ge0.
 \end{align*}
-The formula is first applied away from zero and then passed to the limit. The endpoint terms vanish. Taking $L=45.8318$ contradicts $\lambda\le\Lambda$.
+Apply the formula first to a bounded truncation of $g$ on $[\varepsilon,2a]$. The certified barrier satisfies $\zeta(s)=O(s)$ at zero, so the lower endpoint term tends to zero as $\varepsilon\downarrow0$; the upper term vanishes because $g(2a)=0$. Monotone convergence removes the truncation. Taking $L=45.8318$ contradicts $\lambda\le\Lambda$.
 
 \subsection{Removing the caps}
 Assume $m'\ge0.03$. The following minimization supplies the Robin coefficient.
@@ -87,17 +91,46 @@ Zero extension of $u$ belongs to $H^1(\R^2)$, so $u|_T\in\mathcal V(D)$. We have
 \end{equation}
 
 \subsection{Rearrangement and the boundary window}
-Take $v\in\mathcal V(D)$. First replace it by $|v|$, then by
-$\bigl(v(x,y)^2+v(x,-y)^2\bigr)^{1/2}/\sqrt2$.
-These operations preserve mass and the boundary term and do not increase energy. Rearrange each positive vertical half-fibre decreasingly toward $y=0$, and reflect evenly. The trace at $y=\tau$ becomes the essential infimum on that half-fibre, so its square integral cannot increase. Finally perform horizontal Steiner rearrangement.
+The rearrangement needed here acts on a strip, rather than on the whole plane. The boundary term must therefore be kept in the argument.
 
-These operations preserve the $L^2$ norm and decrease Dirichlet energy. The one-sided rearrangement is performed on a finite interval; it imposes no zero boundary value at its outer endpoint. Horizontal rearrangement can be obtained by polarizations~\cite{BrockSolynin}. These exchange points at the same height and thus apply on a strip. The trace commutes with this rearrangement because $y\mapsto v(\cdot,y)$ is continuous into $L^2(\R)$ and rearrangement is an $L^2$ contraction.
-
-The resulting function is nonnegative and decreases with both $|x|$ and $|y|$. It is supported in the doubly symmetric set
+\begin{lemma}[Strip rearrangement and traces]\label{lem:strip-rearrangement}
+Let $D=S_c\cap T$, where $c$ is even, and let $\sigma\ge0$. For every $v\in\mathcal V(D)$ there is a nonnegative $v^*\in H^1(T)$, decreasing in both $|x|$ and $|y|$, such that
 \[
- D^*=\{(x,y):|y|<|D^x|/2\},\qquad |D^*|=2m'.
+ \norm{v^*}_2=\norm v_2,\qquad Q_\sigma(v^*)\le Q_\sigma(v).
 \]
-Put $w_* = \essinf_{|y|<\tau}c(y)$. The columns of $D^*$ that fill the entire strip form, up to endpoints, an interval of width $w_*$. Hence $2\tau w_*\le2m'$, and the wall traces vanish outside that interval. If $w_*=0$, extension by zero across the walls and Faber--Krahn give
+Write $D^x=\{y:(x,y)\in D\}$. The function $v^*$ vanishes almost everywhere outside
+\[
+ D^*=\{(x,y)\in T:|y|<|D^x|/2\},\qquad |D^*|=|D|=2m'.
+\]
+Its two wall traces vanish outside a centered interval of width
+\[
+ w_* = \essinf_{|y|<\tau}c(y),\qquad \tau w_*\le m'.
+\]
+\end{lemma}
+\begin{proof}
+Replace $v$ by its absolute value and then by
+\[
+ v_0(x,y)=\left(\frac{v(x,y)^2+v(x,-y)^2}{2}\right)^{1/2}.
+\]
+The norm inequality for the derivative of a vector-valued Sobolev function shows that this preserves mass and does not increase energy. The sum of the squared traces on the two walls is unchanged. The new function is even in $y$ and still vanishes outside $D$.
+
+For each $x$, rearrange $v_0(x,\cdot)$ decreasingly on $(0,\tau)$, and reflect the result evenly. We recall why this operation decreases both components of the energy. If $h$ is a nonnegative function on a finite interval, its decreasing rearrangement $h^\downarrow$ is equimeasurable with $h$ and satisfies
+\[
+ \int_0^\tau |(h^\downarrow)'|^2\le\int_0^\tau |h'|^2.
+\]
+For a smooth function, one-dimensional coarea and Cauchy--Schwarz prove this: at each intermediate regular level, the original level set has at least one point, whereas the rearranged level set has exactly one. Approximation in $H^1(0,\tau)$ and lower semicontinuity give the general case. No value is prescribed at either endpoint.
+
+Rearrangement is also a contraction in $L^2(0,\tau)$, by the layer-cake proof of the rearrangement inequality. Apply this contraction to the fibres at $x+h$ and $x$, divide by $h^2$, and integrate in $x$. The difference-quotient characterization of $H^1$ gives the corresponding inequality for the horizontal derivative. Thus the rearranged function belongs to $H^1(T)$ and has no greater Dirichlet energy.
+
+The trace of $h^\downarrow$ at $\tau$ is $\essinf h$, which is no larger than the nonnegative trace of $h$ there. Consequently the wall term does not increase. This assertion holds for almost every fibre and then in the $L^2$ trace sense. The support on each vertical fibre has the same length as before, so it lies in $D^x$ rearranged toward the axis.
+
+Finally rearrange horizontally at each height. This preserves slice masses and lowers the horizontal energy; contraction and difference quotients lower the vertical energy. Equivalently, it can be obtained by polarizations within the strip~\cite{BrockSolynin}. It preserves the wall $L^2$ norms: the map $y\mapsto v(\cdot,y)$ has a continuous $L^2(\R)$ representative up to each wall, and the contraction property makes rearrangement commute with that limit. Ordering of the horizontal slices preserves the decrease in $|y|$.
+
+Since $D$ has centered horizontal sections, $x\mapsto |D^x|$ decreases with $|x|$. Thus $D^*$ already has centered horizontal sections, and the last rearrangement keeps the support in $D^*$. Fubini gives its area. A column reaches both walls precisely when $c(y)>2|x|$ for almost every $y$, apart from an immaterial choice of endpoints. These columns form an interval of width $w_*$. On every shorter column the rearranged function is zero near each wall, so its trace vanishes there. Integrating $c\ge w_*$ on $(0,\tau)$ gives the final inequality.
+\end{proof}
+
+We henceforth use the rearranged function and write it simply as $v$.
+If $w_*=0$, extension by zero across the walls and Faber--Krahn give
 \[
  Q_\sigma(v)\ge\frac\kappa{2m'}\norm v_2^2
  \ge\frac\kappa{2m}\norm v_2^2>\Lambda_0\norm v_2^2.
@@ -105,45 +138,121 @@ Put $w_* = \essinf_{|y|<\tau}c(y)$. The columns of $D^*$ that fill the entire st
 It remains to consider a positive boundary window.
 
 \subsection{Small windows: a perimeter comparison}
-For a chord of length $2\tau$, let $\arc(2\tau,A)$ be the length of the circular arc bounding a segment of area $A$ on one side of the chord. If a doubly symmetric set $U\subset T$ has area $s$ and full-column width $\ell>0$, then
+For a chord of length $2\tau$, let $\arc(2\tau,A)$ be the length of the circular arc bounding a segment of area $A$ on one side of the chord. Define, on the physical range $s\ge2\tau\ell$,
 \begin{equation}\label{eq:perimeter}
- \Per(U;T)\ge P(\ell,s):=
- \max\left\{2\arc\left(2\tau,\frac{s-2\tau\ell}{2}\right),
-                  \sqrt{4\pi s}-2\ell\right\}.
+ P(\ell,s)=
+ \begin{cases}
+ \sqrt{4\pi s},&\ell=0,\\[2pt]
+ \displaystyle\max\left\{2\arc\left(2\tau,\frac{s-2\tau\ell}{2}\right),
+                      \sqrt{4\pi s}-2\ell\right\},&\ell>0.
+ \end{cases}
 \end{equation}
-The second bound follows by adding the two wall traces to the relative perimeter and applying the isoperimetric inequality. For the first, consider the part to the right of the full columns. Complete it on the other side of the chord by the complementary circular segment. Choose the circle so that the completed set has the same area as the circle. The isoperimetric inequality says that its unknown boundary is no shorter than the missing circular arc. Reflecting gives the factor two. The perimeter includes any vertical boundary left on the chord, so no endpoint segment is discarded.
+At zero segment area the arc has length $2\tau$. The separate definition at $\ell=0$ is essential: there need not be a chord joining the two walls when the boundary window is empty.
 
-Apply~\eqref{eq:perimeter} to the level sets of a doubly decreasing $v$. Write $q(s)$ for its decreasing rearrangement in the area variable and $\ell(s)$ for the corresponding wall-trace width. Then $\ell$ is nondecreasing, $0\le\ell\le w_*$ and $2\tau\ell(s)\le s$. Coarea and the layer-cake formula give
+\begin{lemma}[Window perimeter and rearranged energy]\label{lem:window-energy}
+Let $v\in H^1(T)$ be nonnegative, decreasing in $|x|$ and $|y|$, and supported on a set of finite area at most $A_0$. Suppose its wall traces are supported in a centered interval of width at most $w$. There are a decreasing area rearrangement $q$ and a nondecreasing right-continuous function $\ell$, with
+\[
+ 0\le\ell(s)\le w,\qquad 2\tau\ell(s)\le s,\qquad \ell(0^-)=0,
+\]
+such that $q(A_0)=0$ (by zero extension) and
 \begin{equation}\label{eq:window-energy}
  \begin{split}
  Q_\sigma(v)&\ge\int_0^{A_0}P(\ell(s),s)^2q'(s)^2\dd s
                    +2\sigma\int_{[0,A_0]}q(s)^2\dd\ell(s),\\
- \norm v_2^2&=\int_0^{A_0}q(s)^2\dd s,
+ \norm v_2^2&=\int_0^{A_0}q(s)^2\dd s.
  \end{split}
 \end{equation}
-where $A_0\ge|D^*|$ and $q$ is extended by zero. The Stieltjes measure includes jumps; its convention is $\ell(0^-)=0$. At a plateau of $q$, the jump is placed at the right endpoint. This is the convention obtained from the wall layer-cake formula. The full-column width and the positive trace width agree for almost every level; exceptional constant levels do not alter coarea.
+The function $q$ is locally absolutely continuous away from zero. At a plateau of $q$, any jump of $\ell$ is placed at the right endpoint of the plateau.
+\end{lemma}
+\begin{proof}
+Consider first a finite-perimeter superlevel set $U$ of $v$, with area $s$ and wall-trace width $\ell$. Adding its two wall traces to its relative perimeter and using the planar isoperimetric inequality gives
+\[
+ \Per(U;T)\ge\sqrt{4\pi s}-2\ell.
+\]
+For $\ell=0$ this gives exactly the first case of~\eqref{eq:perimeter}.
 
-The relative perimeter is bounded below by $\min\{\sqrt{4\pi s},4\tau\}>0$ for $s>0$. Thus coarea gives local absolute continuity of $q$ away from zero. One first truncates $v$ at a finite height, so $q$ is bounded, and removes the truncation at the end.
+If $\ell>0$, monotonicity in $|y|$ places the full rectangle of width $\ell$ and height $2\tau$ inside $U$. The part to its right has area $(s-2\tau\ell)/2$. Its free boundary joins the ends of a chord of length $2\tau$. The circular arc is the shortest such boundary with the prescribed enclosed area. One direct proof is to attach, on the other side of the chord, the complementary segment of the corresponding circle. The completed set has the area of that circle. The isoperimetric inequality bounds its perimeter below by the circumference; subtracting the known complementary arc gives the claimed bound. Any boundary left on the chord is included in the gluing formula, so this argument also applies to sets of finite perimeter. Reflection gives the factor two in~\eqref{eq:perimeter}.
 
-Here is the criterion used for~\eqref{eq:window-energy}. Let $\widetilde P$ be a lower bound for $P$ on a rectangle $0\le s\le A_0$, $0\le\ell\le w$. On $\ell=0$ use $\widetilde P=\sqrt{4\pi s}$. Suppose a continuous, piecewise smooth function $\rho$ satisfies
+Here are the measure conventions needed to pass from sets to functions. Put
+\[
+ s(t)=|\{v>t\}|,\qquad b(t)=|\{\operatorname{Tr}_{y=\tau}v>t\}|.
+\]
+For almost every $t$, the perimeter trace of $\{v>t\}$ agrees with the superlevel set of the Sobolev trace. Monotonicity makes its full-column width equal to $b(t)$, and gives $2\tau b(t)\le s(t)$. The generalized inverse of $s(t)$ is $q$. The width measure can be specified directly. Write $h(x)=\operatorname{Tr}_{y=\tau}v(x)$ and, for $h(x)>0$, put
+\[
+ r(x)=|\{v\ge h(x)\}|.
+\]
+Define $\dd\ell$ as the image under $r$ of Lebesgue measure restricted to $\{h>0\}$. Thus
+\[
+ \ell(s)=|\{x:h(x)>0,\ r(x)\le s\}|.
+\]
+Since $v(x,y)\ge h(x)$ throughout the column, the nested superlevel sets give $2\tau\ell(s)\le s$. Also $\ell\le w$. At continuity levels this is the width $b(t)$ transferred to the area variable. If a positive measure of points has value $t$, the interval of areas corresponding to $t$ is a plateau of $q$. The use of $\{v\ge t\}$ puts the corresponding width atom at its right endpoint. There $q(r(x))=h(x)$ for almost every $x$ with positive trace. This is the stated convention.
+
+Layer cake, with this convention, gives
+\[
+ \int_{\partial T}v^2
+ =4\int_0^\infty t\,b(t)\dd t
+ =2\int_{[0,A_0]}q(s)^2\dd\ell(s).
+\]
+This identity includes atoms of the width measure. For regular levels, coarea and Cauchy--Schwarz give
+\[
+ \int_{\{v=t\}\cap T}|\nabla v|\dd\mathcal H^1
+ \ge\frac{\Per(\{v>t\};T)^2}{-s'(t)}.
+\]
+The usual inverse-distribution argument now yields the first integral in~\eqref{eq:window-energy}; see~\cite{Talenti,BrothersZiemer} for this coarea form of the rearrangement inequality. Levels where the distribution has a jump give plateaux of $q$ and contribute zero to its derivative energy.
+
+For completeness, the perimeter bound is uniformly positive on each area interval separated from zero:
+\[
+ P(\ell,s)\ge\min\{\sqrt{4\pi s},4\tau\}>0\qquad(s>0).
+\]
+Applying the coarea estimate between two levels shows that $q$ has a square-integrable derivative on every such compact interval and excludes a jump there. This gives its asserted local absolute continuity. The same argument near the end of the support excludes a nonzero jump to the zero extension, and hence gives $q(A_0)=0$. One may first truncate $v$ at a finite height; approximation of the level sets, lower semicontinuity of energy, and the exact layer-cake identity then give the statement for arbitrary $H^1$ functions. Removing the height truncation uses monotone convergence for the masses and boundary terms.
+\end{proof}
+
+The next lemma turns the two differential inequalities checked by the computer into an estimate for every admissible width path.
+
+\begin{lemma}[Comparison on a monotone BV path]\label{lem:bv-comparison}
+Let $\widetilde P\le P$ be positive away from the origin on the physical part of $[0,A_0]\times[0,w]$, using $\widetilde P(0,s)=\sqrt{4\pi s}$ on the zero-window edge. Suppose $\rho$ is continuous and piecewise $C^1$, locally Lipschitz including at the origin, and satisfies
 \begin{equation}\label{eq:rho}
  \rho(0,0)=0,\qquad
  \rho_s\le-\Lambda_0-\frac{\rho^2}{\widetilde P^2},\qquad
  \rho_\ell\le2\sigma.
 \end{equation}
-Along a nondecreasing path put $g(s)=\rho(s,\ell(s))$. Fill each jump by its vertical segment. The chain rule on the smooth pieces, and integration across these segments, give
+The inequalities are required on each smooth piece and by tangential restriction on its boundary. Then every pair $q,\ell$ in Lemma~\ref{lem:window-energy} satisfies
 \[
- \dd g\le-\left(\Lambda_0+\frac{g^2}{\widetilde P^2}\right)\dd s
-            +2\sigma\dd\ell.
+ \int_0^{A_0}\widetilde P(\ell(s),s)^2q'(s)^2\dd s
+ +2\sigma\int_{[0,A_0]}q(s)^2\dd\ell(s)
+ \ge\Lambda_0\int_0^{A_0}q(s)^2\dd s.
 \]
-Use $\widetilde P^2q'^2\ge2gqq'-g^2q^2/\widetilde P^2$ and integrate by parts. The result is
-\[
- \int\widetilde P^2q'^2+2\sigma\int q^2\dd\ell
-       -\Lambda_0\int q^2\ge0.
-\]
-The endpoint at $A_0$ vanishes since $q(A_0)=0$. This also holds when $A_0$ equals the support area: the perimeter lower bound is positive near that endpoint, so the energy estimate prevents a nonzero jump to the zero extension. For the paths in~\eqref{eq:window-energy}, $\ell(s)\le s/(2\tau)$; local Lipschitz continuity of $\rho$ and $\rho(0,0)=0$ therefore give $\rho(s,\ell(s))=O(s)$. Truncating at $s=\varepsilon$ and passing to the limit handles the origin.
+No absolute continuity of $\ell$ is assumed.
+\end{lemma}
+\begin{proof}
+First suppose $q$ is bounded, and restrict to $[\varepsilon,A_0]$. Set $g(s)=\rho(s,\ell(s))$. A monotone path has bounded variation. Complete each jump of its graph by the vertical segment joining the two one-sided values, and parametrize the completed graph by the sum of its horizontal and vertical variations. The resulting parametrization is Lipschitz, with both coordinates nondecreasing.
 
-No absolute continuity of $\ell$ is assumed here. On a compact subinterval away from zero, complete each jump of its graph by a vertical segment and approximate this monotone graph by polygonal graphs. The differential inequality holds along every segment. Uniform continuity of $\rho$ and continuity of the truncated $q$ pass the boundary integrals to their Stieltjes limits. This includes the singular continuous part of $\dd\ell$, as well as its atoms. On triangulation edges the tangential derivatives agree, since the adjacent pieces of $\rho$ are continuous there. Thus the comparison applies to the paths supplied by coarea, not only to smooth paths.
+The ordinary chain rule along this parametrization proves the measure inequality
+\begin{equation}\label{eq:bv-chain}
+ \dd g\le-\left(\Lambda_0+
+ \frac{g^2}{\widetilde P(\ell(s),s)^2}\right)\dd s+2\sigma\dd\ell.
+\end{equation}
+Indeed, its absolutely continuous part uses both inequalities in~\eqref{eq:rho}. On the singular continuous part the horizontal coordinate has zero derivative with respect to the graph parameter, so only $\rho_\ell\le2\sigma$ is used. At a jump this same inequality gives
+\[
+ g(s^+)-g(s^-)\le2\sigma\bigl(\ell(s^+)-\ell(s^-)\bigr)
+\]
+by integration along the inserted vertical segment. If the graph follows an edge between smooth pieces, continuity of $\rho$ makes the two tangential derivatives agree. Thus no derivative across an edge is silently imposed. These observations also prove~\eqref{eq:bv-chain} by polygonal approximation of the completed graph.
+
+Completion of the square gives, almost everywhere,
+\[
+ \widetilde P^2q'^2\ge2gqq'-\frac{g^2q^2}{\widetilde P^2}.
+\]
+Multiply~\eqref{eq:bv-chain} by the continuous function $q^2$ and add this inequality. The BV product rule gives
+\[
+ \int_\varepsilon^{A_0}\widetilde P^2q'^2
+ +2\sigma\int_{(\varepsilon,A_0]}q^2\dd\ell
+ -\Lambda_0\int_\varepsilon^{A_0}q^2
+ \ge [gq^2]_\varepsilon^{A_0}.
+\]
+The upper endpoint is zero. At the lower endpoint, $\ell(s)\le s/(2\tau)$ and local Lipschitz continuity at $(0,0)$ give $g(s)=O(s)$. Boundedness of $q$ therefore makes this term tend to zero. This proves the claim for bounded $q$.
+
+Finally use $q_M=\min\{q,M\}$. It is locally absolutely continuous, has the same zero endpoint, and satisfies $|q_M'|\le|q'|$. Its derivative agrees with $q'$ wherever $q<M$. Monotone convergence of the mass and Stieltjes terms and convergence of the derivative energies prove the assertion as $M\to\infty$. If either energy term is infinite the assertion is immediate.
+\end{proof}
 
 The finite certificates verify~\eqref{eq:rho} for all $0.03\le m'\le m$ and $w_*\le0.241$, with $\sigma=\sigma_{\Lambda_0}(m')$. Together with~\eqref{eq:robin}, this contradicts $\lambda\le\Lambda$.
 
