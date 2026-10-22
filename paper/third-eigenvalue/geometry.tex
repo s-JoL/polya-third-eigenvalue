@@ -1,0 +1,154 @@
+\section{Introduction}
+Let $\lambda_k(\Omega)$ denote the Dirichlet eigenvalues of a planar open set, listed in increasing order and repeated according to multiplicity. P\'olya's conjecture asks whether
+\begin{equation}\label{eq:polya}
+ |\Omega|\lambda_k(\Omega)\ge 4\pi k
+\end{equation}
+for every $k\ge1$. P\'olya proved the conjecture for domains that tile the plane~\cite{Polya}. The first two eigenvalues satisfy stronger inequalities: the Faber--Krahn and Krahn--Szeg\H{o} bounds give $|\Omega|\lambda_1\ge\kappa$ and $|\Omega|\lambda_2\ge2\kappa$, where
+\[
+ \kappa=\pi j_{0,1}^2=18.1684\ldots
+\]
+and $j_{0,1}$ is the first positive zero of $J_0$; see~\cite{Henrot} for the classical bounds.
+
+We consider the third eigenvalue, for which the classical two-component estimate no longer reaches the P\'olya constant.
+\begin{theorem}\label{thm:main}
+If $\Omega\subset\R^2$ is open and $0<|\Omega|<\infty$, then
+\[
+ |\Omega|\lambda_3(\Omega)>12\pi.
+\]
+\end{theorem}
+Here and throughout, area means Lebesgue measure. The operator is defined by the quadratic form $u\mapsto\int_\Omega|\nabla u|^2$ on $H^1_0(\Omega)$. Thus holes contribute no area, all components are included, and no classical boundary trace is needed. The domain is allowed to be unbounded.
+
+Results for every eigenvalue are known for disks and annuli~\cite{Balls,Annuli}. A recent preprint of Tang and Wang~\cite{TangWang} asserts the strict inequality for every bounded simply connected planar domain. Theorem~\ref{thm:main} makes no topological assumption, but concerns only the third eigenvalue. Its proof does not use that preprint.
+
+The main geometric step is a choice of cutting line. Scale the area to one, bisect the set by a line, and reflect each half across it. Neumann bracketing reduces the problem to the second even eigenvalue on each reflected half. A small second even eigenvalue produces two disjoint low-energy pieces. Faber--Krahn forces each piece to have appreciable area, but this alone is insufficient: it gives no information about where that area lies. Our first profile estimate supplies the missing information. It forces each piece to occupy a definite amount of a strip next to the cutting line.
+
+We rotate the bisecting line until the two adjacent strips have equal area. If this area is small, both reflected halves have large second even eigenvalue. If it is large, little area remains outside the full strip. A second profile estimate then works for a perpendicular bisector. These two alternatives cover every set.
+
+Section~\ref{sec:geometry} carries out this geometric argument, assuming the two profile estimates. Sections~\ref{sec:one} and~\ref{sec:two} establish their analytic reductions. The remaining finite inequalities, and the procedures used to verify them, are given in Section~\ref{sec:cert}. The accompanying computational supplement contains the numerical certificate data and implementations of these procedures. No numerical approximation to an eigenvalue of a sample domain is used in the proof.
+
+\section{The geometric reduction}\label{sec:geometry}
+We use the constants
+\begin{equation}\label{eq:constants}
+ \Lambda=12\pi,\quad \Lambda_0=\frac{377}{10},\quad
+ \tau=\frac9{20},\quad m=\frac{1141}{5000},\quad a=\frac{519}{2000}.
+\end{equation}
+Thus $2\tau=0.9$, $1-4m=0.0872$, and $\Lambda<\Lambda_0$. All terminating decimals below denote exact rational numbers unless a certificate file is explicitly described as binary data.
+
+\subsection{Cutting and reflecting}
+For the moment let $|\Omega|=1$, and write the cutting line as $L=\{y=0\}$. Let $R_L$ be reflection across $L$, and set
+\[
+ \Omega_\pm=\Omega\cap\{\pm y>0\},\qquad
+ S_\pm=\Omega_\pm\cup R_L\Omega_\pm\cup(\Omega\cap L).
+\]
+The sets $S_\pm$ are open. At a point of $\Omega\cap L$, an open ball in $\Omega$ supplies both half-balls after reflection. Let $\lambda_j^{\ev}(S_\pm)$ denote the eigenvalues restricted to functions even under $R_L$.
+
+\begin{lemma}\label{lem:bracket}
+For every line $L$,
+\[
+ \lambda_3(\Omega)\ge
+ \min\{\lambda_2^{\ev}(S_+),\lambda_2^{\ev}(S_-)\}.
+\]
+\end{lemma}
+\begin{proof}
+Let $V_\pm$ be the closure in $H^1(\Omega_\pm)$ of restrictions of $C_c^\infty(\Omega)$ functions. Restriction to the two halves preserves the sum of the $L^2$ norms and the sum of the Dirichlet energies. The min--max principle bounds the eigenvalues of $\Omega$ from below by those of $V_+\oplus V_-$. Among its first three eigenvalues, at least two come from the same summand. Its third eigenvalue is therefore at least the smaller of the second eigenvalues of the two summands.
+
+Even reflection maps $V_\pm$ into $H^1_0(S_\pm)^{\ev}$ and multiplies both energy and squared norm by two. This follows first for the restricted smooth functions and then by closure. Another application of min--max proves the claim.
+\end{proof}
+
+Finite area is sufficient for the spectral facts used here. Indeed, zero extension places $H^1_0(\Omega)$ in $H^1(\R^2)$. For any fixed $p>2$, the Sobolev bound and H\"older's inequality make the $L^2$ mass outside a large ball uniformly small on a bounded $H^1$ set, since $|\Omega\setminus B_R|\to0$. Rellich compactness inside the ball then gives compactness of $H^1_0(\Omega)\hookrightarrow L^2(\Omega)$.
+
+\begin{lemma}\label{lem:cores}
+There are disjoint open sets $W_1,W_2\subset S_+$, both invariant under $R_L$, such that
+\[
+ \lambda_1(W_i)\le\lambda_2^{\ev}(S_+),\qquad i=1,2.
+\]
+\end{lemma}
+\begin{proof}
+Even eigenfunctions are genuine weak eigenfunctions on $S_+$: the weak equation holds for even test functions, and both sides vanish for odd ones. They are smooth in the interior.
+
+Choose a nonnegative first even eigenfunction $u_1$ and a second even eigenfunction $u_2$ orthogonal to it. If $u_2$ changes sign, use $W_1=\{u_2>0\}$ and $W_2=\{u_2<0\}$. If it has one sign, change its sign if necessary. Orthogonality and continuity imply that $\{u_1>0\}$ and $\{u_2>0\}$ are disjoint, and we use these sets. This also applies when the first even eigenvalue is multiple: absolute value preserves the Rayleigh quotient of a minimizer, so a nonnegative minimizer can still be chosen.
+
+The sign parts are admissible Dirichlet test functions on their positivity sets. To see this, if $u\in H^1_0(U)\cap C(U)$, approximate $u$ in $H^1$ by $u_n\in C_c^\infty(U)$. The functions $\min\{u_n^+,(u-\varepsilon)^+\}$ have compact support in $\{u>0\}$, are bounded in $H^1$, and converge in $L^2$ to $(u-\varepsilon)^+$. Weak closure, followed by $\varepsilon\downarrow0$, gives $u^+\in H^1_0(\{u>0\})$. Testing the eigenvalue equation with the sign parts gives the Rayleigh bounds. Evenness gives the required symmetry.
+\end{proof}
+
+\subsection{The two profile estimates}
+For an even nonnegative profile $c$, define
+\[
+ S_c=\{(x,y):|x|<c(y)/2\}.
+\]
+When $c$ is lower semicontinuous this is open. For a measurable profile define
+\[
+ \mu[c]=\inf_{F\ne0}
+ \frac{\int_\R\bigl(|F'|^2+\pi^2|F|^2/c^2\bigr)}{\int_\R|F|^2}.
+\]
+The infimum is over $H^1(\R)$ functions with finite numerator; the potential is infinite on $\{c=0\}$ and zero where $c=\infty$.
+
+We will prove the following two statements.
+\begin{proposition}[A single profile]\label{prop:single}
+If $c$ is even, lower semicontinuous and nonnegative, and
+\[
+ \int_0^\infty c\le a,\qquad \int_0^\tau c\le m,
+\]
+then $\lambda_1(S_c)>\Lambda$.
+\end{proposition}
+\begin{proposition}[A pair of profiles]\label{prop:pair}
+Suppose $c_1,c_2$ are even nonnegative measurable profiles and
+\[
+ \int_0^\infty(c_1+c_2)\le\frac12,\qquad
+ \int_0^\infty(c_1+c_2-0.9)_+\le0.0872.
+\]
+Then $\max\{\mu[c_1],\mu[c_2]\}\ge\Lambda_0$.
+\end{proposition}
+The first estimate rules out a low-energy piece with too little area near the line. The second rules out two low-energy pieces whose combined width exceeds $0.9$ only by a small total amount. The constants have been chosen so that the two estimates fit the geometric alternatives: $4m$ is the area forced into a full strip, and $1-4m$ is the area left outside it.
+
+Write $W^y=\{x:(x,y)\in W\}$ and $c_W(y)=|W^y|$. For an open set $W$, Fatou's lemma shows that $c_W$ is lower semicontinuous. Steiner rearrangement gives
+\begin{equation}\label{eq:steiner}
+ \lambda_1(S_{c_W})\le\lambda_1(W).
+\end{equation}
+There is also a one-dimensional lower bound:
+\begin{equation}\label{eq:slicing}
+ \mu[c_W]\le\lambda_1(W).
+\end{equation}
+On each component of $W^y$, the Dirichlet inequality gives $\int|u_x|^2\ge\pi^2c_W(y)^{-2}\int|u|^2$. For $F(y)=\norm{u(\cdot,y)}_2$, one has $|F'|\le\norm{u_y(\cdot,y)}_2$ almost everywhere. Integration proves~\eqref{eq:slicing}. Both arguments extend from smooth compactly supported functions by approximation. Rearrangement is used in~\eqref{eq:steiner}; slicing is used in~\eqref{eq:slicing}. They serve different purposes.
+
+\begin{lemma}\label{lem:strip}
+Suppose $L$ bisects the area of $\Omega$. If $\lambda_2^{\ev}(S_+)\le\Lambda$, then
+\[
+ |\Omega\cap\{0<y<\tau\}|>2m.
+\]
+\end{lemma}
+\begin{proof}
+Take the sets from Lemma~\ref{lem:cores} and put $c_i=c_{W_i}$ and $a_i=\int_0^\infty c_i$. Faber--Krahn and disjointness give
+\[
+ \frac{\kappa}{2\Lambda}\le a_i,
+ \qquad a_1+a_2\le\frac12.
+\]
+Consequently $a_i\le\frac12-\kappa/(2\Lambda)<a$. By~\eqref{eq:steiner}, $\lambda_1(S_{c_i})\le\Lambda$. Proposition~\ref{prop:single} forces $\int_0^\tau c_i>m$ for each $i$. Add these inequalities and use $c_1+c_2\le c_{\Omega_+}$.
+\end{proof}
+
+\subsection{Choosing the line}
+\begin{proof}[Proof of Theorem~\ref{thm:main}, assuming Propositions~\ref{prop:single} and~\ref{prop:pair}]
+Continue to assume $|\Omega|=1$. For a unit vector $n$, an area median is a number $s$ with $|\Omega\cap\{x\cdot n<s\}|=1/2$.
+
+First suppose a direction has an interval of medians. The open strip between its extreme medians is disjoint from $\Omega$: it has zero intersection area, and a nonempty open intersection would have positive area. Cut strictly inside this strip. Each reflected half is a disjoint union of two copies of the original half. If its second even eigenvalue were at most $\Lambda$, Lemma~\ref{lem:cores} and Faber--Krahn, applied to the upper halves of the two pieces, would give
+\[
+ \frac12\ge |W_1^+|+|W_2^+|\ge\frac{2\kappa}{\Lambda}>\frac12,
+\]
+a contradiction. Lemma~\ref{lem:bracket} finishes this case.
+
+We may assume that every median $s(n)$ is unique. The function $(n,s)\mapsto|\Omega\cap\{x\cdot n<s\}|$ is continuous by dominated convergence, since a line has planar measure zero. Its unique median depends continuously on $n$: choose two levels on either side of a given median at which the areas lie strictly below and above $1/2$; continuity traps nearby medians between them.
+
+Set
+\[
+ q(n)=|\Omega\cap\{s(n)<x\cdot n<s(n)+\tau\}|.
+\]
+This is continuous, and $s(-n)=-s(n)$. The continuous odd function $q(n)-q(-n)$ vanishes somewhere on the circle. Rotate coordinates so this median line is $y=0$, and write $Q=q(n)=q(-n)$.
+
+If $Q\le2m$, Lemma~\ref{lem:strip} shows that both second even eigenvalues exceed $\Lambda$. If $Q>2m$, the full horizontal strip has area $2Q>4m$. Choose a vertical area bisector. At horizontal position $x$, let $e(x)$ be the length of the part of the vertical section outside $|y|<\tau$. Its full length is at most $0.9+e(x)$, and
+\[
+ \int_\R e(x)\dd x<1-4m=0.0872.
+\]
+On either side of the vertical bisector, the full profile has mass $1/2$ and excess above $0.9$ less than $0.0872$. If that reflected half had second even eigenvalue below $\Lambda_0$, its two pieces from Lemma~\ref{lem:cores} would, by~\eqref{eq:slicing}, contradict Proposition~\ref{prop:pair}. Both second even eigenvalues are therefore at least $\Lambda_0>\Lambda$.
+
+Lemma~\ref{lem:bracket} gives $\lambda_3(\Omega)>\Lambda$ in both alternatives. Finally $\lambda_k(t\Omega)=t^{-2}\lambda_k(\Omega)$ removes the area normalization.
+\end{proof}

@@ -1,0 +1,51 @@
+{
+  "status": "PASS",
+  "fresh_kernel_checks": true,
+  "records": [
+    {
+      "module": "K3Algebra",
+      "sha256": "5406ae3f72c87b689426e46fa793f8a81d916892f6058217891797fce30a5b8f",
+      "axioms": [
+        "'K3Paper.target_below_certificate' depends on axioms: [propext, Classical.choice, Quot.sound]",
+        "'K3Paper.checker_pi_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]",
+        "'K3Paper.parameter_identities' depends on axioms: [propext, Classical.choice, Quot.sound]",
+        "'K3Paper.angle_budget' depends on axioms: [propext, Classical.choice, Quot.sound]",
+        "'K3Paper.cubic_allocation' depends on axioms: [propext, Classical.choice, Quot.sound]",
+        "'K3Paper.cap_minimization' depends on axioms: [propext, Classical.choice, Quot.sound]",
+        "'K3Paper.robin_elimination' depends on axioms: [propext, Classical.choice, Quot.sound]",
+        "'K3Paper.picone_identity' depends on axioms: [propext, Classical.choice, Quot.sound]",
+        "'K3Paper.affine_rectangle' depends on axioms: [propext, Classical.choice, Quot.sound]"
+      ]
+    },
+    {
+      "module": "K3Interfaces",
+      "sha256": "52381b09d6571cc213529a2ea621d4e7300b53bc273558bf46a19c3a3e45cea9",
+      "axioms": [
+        "'PolyaAudit.spectral_threshold' depends on axioms: [propext, Classical.choice, Quot.sound]",
+        "'PolyaAudit.rational_interfaces' depends on axioms: [propext, Classical.choice, Quot.sound]",
+        "'PolyaAudit.select_cut' depends on axioms: [propext, Classical.choice, Quot.sound]",
+        "'PolyaAudit.A_from_four_gates' depends on axioms: [propext, Classical.choice, Quot.sound]",
+        "'PolyaAudit.schur_square' depends on axioms: [propext, Classical.choice, Quot.sound]"
+      ]
+    },
+    {
+      "module": "FullTorus",
+      "sha256": "8bae3d5948937f02ddcb892774200c3398ad7907722f7106691d678136f80456",
+      "axioms": [
+        "'PolyaAudit.minor1_positive' depends on axioms: [propext, Classical.choice, Quot.sound]",
+        "'PolyaAudit.minor2_positive' depends on axioms: [propext, Classical.choice, Quot.sound]",
+        "'PolyaAudit.minor3_positive' depends on axioms: [propext, Classical.choice, Quot.sound]",
+        "'PolyaAudit.minor1_factored' depends on axioms: [propext, Classical.choice, Quot.sound]",
+        "'PolyaAudit.minor2_factored' depends on axioms: [propext, Classical.choice, Quot.sound]",
+        "'PolyaAudit.minor3_factored' depends on axioms: [propext, Classical.choice, Quot.sound]",
+        "'PolyaAudit.all_real_phases' depends on axioms: [propext, Classical.choice, Quot.sound]",
+        "'PolyaAudit.minor1_identity' depends on axioms: [propext, Classical.choice, Quot.sound]",
+        "'PolyaAudit.minor2_identity' depends on axioms: [propext, Classical.choice, Quot.sound]",
+        "'PolyaAudit.minor3_identity' depends on axioms: [propext, Classical.choice, Quot.sound]",
+        "'PolyaAudit.all_cosine_box' depends on axioms: [propext, Classical.choice, Quot.sound]"
+      ]
+    }
+  ],
+  "negative_control_rejected": true,
+  "full_pde_formalization": false
+}

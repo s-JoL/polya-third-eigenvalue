@@ -1,0 +1,31 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,mathtools,booktabs,geometry,microtype}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\geometry{margin=1in}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb R}
+\newcommand{\ev}{\mathrm{ev}}
+\newcommand{\Per}{\operatorname{Per}}
+\newcommand{\essinf}{\operatorname*{ess\,inf}}
+\newcommand{\arc}{\operatorname{arc}}
+\newcommand{\dd}{\,\mathrm d}
+\newcommand{\norm}[1]{\lVert#1\rVert}
+\title{P\'olya's inequality for the third planar Dirichlet eigenvalue}
+\author{Liang Song}
+\date{22 October 2026}
+\hypersetup{pdftitle={Polya's inequality for the third planar Dirichlet eigenvalue},pdfauthor={Liang Song},pdfsubject={Spectral geometry; Dirichlet eigenvalues}}
+\begin{document}
+\maketitle
+\begin{abstract}
+We prove that $|\Omega|\lambda_3(\Omega)>12\pi$ for every planar open set of finite positive area, with the Dirichlet eigenvalues counted with multiplicity. No assumption on connectivity or boundary regularity is needed. The argument cuts the domain along an area bisector and reflects the two halves. Two estimates for cross-sectional profiles then give a dichotomy: either this cut has the required spectral bound, or a perpendicular cut does. The profile estimates use rearrangement and one-dimensional comparison, together with finite calculations in exact rational and interval arithmetic.
+\end{abstract}
+\input{geometry}
+\input{single-profile}
+\input{pair-profile}
+\input{certificates}
+\input{appendix}
+\end{document}

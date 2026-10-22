@@ -1,10 +1,20 @@
 cff-version: 1.2.0
-message: "Please cite this reproducible research companion."
-title: "Pólya-related programmatic proofs: a twisted Q2/Q1 torus lemma and a planar k=3 argument"
+message: "Please cite the accompanying preprint when using this work."
+title: "Pólya's inequality for the third planar Dirichlet eigenvalue"
 type: software
-version: 0.1.0
+version: 0.2.0
 license: MIT
-date-released: 2026-10-11
+date-released: 2026-10-22
+repository-code: "https://github.com/s-JoL/polya-third-eigenvalue"
 authors:
-  - name: s-JoL
-    website: https://github.com/s-JoL
+  - family-names: Song
+    given-names: Liang
+    website: "https://github.com/s-JoL"
+preferred-citation:
+  type: unpublished
+  title: "Pólya's inequality for the third planar Dirichlet eigenvalue"
+  authors:
+    - family-names: Song
+      given-names: Liang
+  year: 2026
+  url: "https://github.com/s-JoL/polya-third-eigenvalue/blob/main/paper/third-eigenvalue/paper.pdf"

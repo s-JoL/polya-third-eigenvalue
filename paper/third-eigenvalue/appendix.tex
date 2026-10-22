@@ -1,0 +1,47 @@
+\appendix
+\section{Covering the large-window trajectories}\label{app:stairs}
+This appendix explains the global step after the cellwise potential inequality~\eqref{eq:potential}. Fix a floor $\theta_b=0.25$ and levels
+\[
+ \theta_R=t_0<t_1<\cdots<t_K,
+\]
+with the last level close to the upper stationary angle for the smallest allowed width $w$. A trajectory satisfying the terminal condition falls into one of three classes.
+
+If it falls below $\theta_b$, it must later return to $\theta_R$. Use a potential with $\nu=w$ on that return segment and the elementary bound $b\ge w$ on the remainder. This gives
+\[
+ D=w\tau+\int_{\theta_b}^{\theta_R}p_{\max}(t;w)\dd t.
+\]
+If it reaches $t_K$, apply the same potential before its first arrival there to obtain
+\[
+ A_K=w\tau+\int_{\pi/2}^{t_K}p_{\max}(t;w)\dd t.
+\]
+These estimates need no lower bound on the earlier minimum angle: with $\nu=w$, the slope zero is admissible outside the stated interval.
+
+Otherwise the maximum angle lies in some $[t_k,t_{k+1})$, and, after the first class has been excluded, the whole path stays in $[\theta_b,t_{k+1}]$. First arrival at $t_k$ gives
+\[
+ A_k=w\tau+\int_{\pi/2}^{t_k}p_{\max}(t;w)\dd t.
+\]
+A second estimate uses a common time coefficient $\nu_k$ and two potentials, one before and one after that first arrival:
+\[
+ B_k=\nu_k\tau+
+       \int_{\pi/2}^{t_k}p_{\max}(t;\nu_k)\dd t
+       -\int_{\theta_R}^{t_k}p_{\min}(t;\nu_k)\dd t.
+\]
+Both potentials satisfy~\eqref{eq:potential} on every visited cell. For the second one, the selected lower slopes are nonnegative on $[\theta_R,t_{k+1}]$; replacing the actual terminal angle, which is at least $\theta_R$, by $\theta_R$ can only weaken the bound. The two first-arrival times cancel because their time coefficient is the same. A value $\nu_k<w$ merely weakens this estimate and does not invalidate it.
+
+The resulting universal lower bound is
+\[
+ \min\left\{D,A_K,\min_{0\le k<K}\max(A_k,B_k)\right\}.
+\]
+The checker verifies every slope over its entire angular cell and evaluates every term with interval arithmetic. It uses 60 levels. Thus turning trajectories and waiting near a stationary angle are included; monotonicity of the trajectory is never assumed.
+
+\begin{thebibliography}{9}
+\bibitem{Henrot} A. Henrot, \emph{Extremum Problems for Eigenvalues of Elliptic Operators}, Frontiers in Mathematics, Birkh\"auser, Basel, 2006. \href{https://doi.org/10.1007/3-7643-7706-2}{doi:10.1007/3-7643-7706-2}.
+\bibitem{Polya} G. P\'olya, On the eigenvalues of vibrating membranes, \emph{Proc. London Math. Soc.} (3) \textbf{11} (1961), 419--433. \href{https://doi.org/10.1112/plms/s3-11.1.419}{doi:10.1112/plms/s3-11.1.419}.
+\bibitem{Balls} N. Filonov, M. Levitin, I. Polterovich and D. A. Sher, P\'olya's conjecture for Euclidean balls, \emph{Invent. Math.} \textbf{234} (2023), 129--169. \href{https://doi.org/10.1007/s00222-023-01198-1}{doi:10.1007/s00222-023-01198-1}.
+\bibitem{Annuli} N. Filonov, M. Levitin, I. Polterovich and D. A. Sher, P\'olya's conjecture for Dirichlet eigenvalues of annuli, \emph{J. London Math. Soc.} \textbf{113} (2026), e70425. \href{https://doi.org/10.1112/jlms.70425}{doi:10.1112/jlms.70425}.
+\bibitem{TangWang} Q. Tang and Z. Wang, Strict Dirichlet P\'olya inequality for simply connected planar domains, preprint (2026), \href{https://arxiv.org/abs/2610.13139v1}{arXiv:2610.13139v1}.
+\bibitem{Talenti} G. Talenti, Elliptic equations and rearrangements, \emph{Ann. Scuola Norm. Sup. Pisa Cl. Sci.} (4) \textbf{3} (1976), 697--718. \url{https://numdam.org/item/ASNSP_1976_4_3_4_697_0/}.
+\bibitem{BrothersZiemer} J. E. Brothers and W. P. Ziemer, Minimal rearrangements of Sobolev functions, \emph{J. Reine Angew. Math.} \textbf{384} (1988), 153--179. \href{https://doi.org/10.1515/crll.1988.384.153}{doi:10.1515/crll.1988.384.153}.
+\bibitem{BrockSolynin} F. Brock and A. Yu. Solynin, An approach to symmetrization via polarization, \emph{Trans. Amer. Math. Soc.} \textbf{352} (2000), 1759--1796. \href{https://doi.org/10.1090/S0002-9947-99-02558-1}{doi:10.1090/S0002-9947-99-02558-1}.
+\bibitem{Zettl} A. Zettl, \emph{Sturm--Liouville Theory}, Mathematical Surveys and Monographs, vol. 121, American Mathematical Society, Providence, RI, 2005. \href{https://doi.org/10.1090/surv/121}{doi:10.1090/surv/121}.
+\end{thebibliography}

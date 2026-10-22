@@ -21,6 +21,10 @@ x=F('2.404825557695772768621631879326454643124244909145');e=F(1,10**45)
 lo,hi=x-e,x+e
 assert j0_bounds(lo)[0]>0 and j0_bounds(hi)[1]<0
 assert hi<F(241,100) and F(241,100)**2<8 # J1 >= x/2-x^3/16 >0 on (0,2.41]
+# Also check the wider bracket actually used in the T interval calculation.
+Tlo,Thi=F('2.40482555769577276'),F('2.40482555769577277')
+assert j0_bounds(Tlo)[0]>0 and j0_bounds(Thi)[1]<0
+assert Tlo<lo<hi<Thi
 ctx.prec=200
 Q=lambda x:arb(fmpq(F(x).numerator,F(x).denominator))
 PI=Q(pi0).union(Q(pi1));J=Q(lo).union(Q(hi));K=PI*J*J
@@ -36,5 +40,5 @@ checks={
  'sigma37.7_at_m0>0':sigma1/(a-Q(F(3,100))).sqrt()*(1-Q(F(377,10))*2*(a-Q(F(3,100)))/K),
  'arc_cap_valid':PI*tau*tau/2-m}
 assert all(v>0 for v in checks.values())
-rec={'status':'PASS','arithmetic':'Fraction alternating-series pi and first Bessel root; 200-bit arb interfaces', 'root_uniqueness':'J0 derivative=-J1, J1>=x/2-x^3/16>0 for 0<x<=2.41', 'pi_bounds_decimal':[str(Q(pi0)),str(Q(pi1))],'j01_bracket':[str(lo),str(hi)], 'strict_slacks':{k:str(v) for k,v in checks.items()}, 'not_formal_transcendental_proof':True}
+rec={'status':'PASS','arithmetic':'Fraction alternating-series pi and first Bessel root; 200-bit arb interfaces', 'root_uniqueness':'J0 derivative=-J1, J1>=x/2-x^3/16>0 for 0<x<=2.41', 'pi_bounds_decimal':[str(Q(pi0)),str(Q(pi1))],'j01_bracket':[str(lo),str(hi)],'T_bracket':[str(Tlo),str(Thi)], 'strict_slacks':{k:str(v) for k,v in checks.items()}, 'not_formal_transcendental_proof':True}
 (R/'build/constants-receipt.json').write_text(json.dumps(rec,indent=2));print(json.dumps(rec,indent=2))

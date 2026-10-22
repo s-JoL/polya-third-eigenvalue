@@ -5,3 +5,7 @@ __pycache__/
 *.olean
 *.ilean
 *.trace
+paper/third-eigenvalue/*.aux
+paper/third-eigenvalue/*.log
+paper/third-eigenvalue/*.out
+paper/third-eigenvalue/*.xdv

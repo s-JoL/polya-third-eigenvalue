@@ -1,0 +1,196 @@
+\section{The single-profile estimate}\label{sec:one}
+We prove Proposition~\ref{prop:single}. Suppose, to obtain a contradiction, that
+\[
+ \lambda=\lambda_1(S_c)\le\Lambda,
+ \qquad m'=\int_0^\tau c\le m.
+\]
+Let $T=\R\times(-\tau,\tau)$, $D=S_c\cap T$, and $\alpha=a-m'$. There are two sources of energy to exploit. Very little area in the central strip creates a narrow neck. Otherwise, the two parts outside the strip force a boundary penalty on its walls. After replacing these outer parts by that penalty, only the size of the nonzero boundary trace remains to be considered.
+
+\subsection{A narrow central strip}
+Only the component of $S_c$ that meets $y=0$ needs consideration. Every other component lies in a half-plane and has area at most $a$, so its first eigenvalue is at least $\kappa/a>\Lambda$. The component meeting the axis is unique and symmetric; its positive ground state is even.
+
+Let $U_t$ be a superlevel set of that ground state, of area $s$. Some good horizontal slice $y_t\in(0,\tau)$ has length at most $m_0/\tau$, where $m_0=0.03$. This follows by averaging the section lengths. The part of $U_t$ above that slice has area at least $s/2-m_0$. The isoperimetric inequality, applied to this part and then reflected, gives
+\begin{equation}\label{eq:neck}
+ \Per(U_t)\ge I(s):=
+ \max\left\{\sqrt{4\pi s},\,
+ 2\left[\sqrt{4\pi(s/2-m_0)_+}-\frac{m_0}{\tau}\right]\right\}.
+\end{equation}
+The subtracted term accounts for the new cut. The same argument for finite-perimeter superlevel sets follows from the slicing and gluing formulae for perimeter.
+
+The coarea formula and Cauchy--Schwarz give
+\begin{equation}\label{eq:neck-quotient}
+ \lambda\ge\inf_{g(2a)=0}
+ \frac{\int_0^{2a}I(s)^2|g'(s)|^2\dd s}{\int_0^{2a}|g(s)|^2\dd s}.
+\end{equation}
+Here $g$ is the decreasing rearrangement in the area variable, extended by zero if the support has area less than $2a$. This is the energy form of the rearrangement argument~\cite{Talenti,BrothersZiemer}.
+
+The certificate in Section~\ref{sec:cert} bounds the quotient in~\eqref{eq:neck-quotient} from below by $45.8318$. Its comparison principle is short. If $\zeta(0)=0$, $\zeta$ remains finite, and
+\[
+ \zeta'\ge L+\frac{\zeta^2}{I^2},
+\]
+with only upward jumps, then completion of the square and integration by parts yield
+\begin{align*}
+ \int I^2g'^2-L\int g^2
+ &=\int I^2\left(g'+\frac{\zeta g}{I^2}\right)^2\\
+ &\quad+\int g^2\left(\dd\zeta-\frac{\zeta^2}{I^2}\dd s-L\dd s\right)
+   -[\zeta g^2]\ge0.
+\end{align*}
+The formula is first applied away from zero and then passed to the limit. The endpoint terms vanish. Taking $L=45.8318$ contradicts $\lambda\le\Lambda$.
+
+\subsection{Removing the caps}
+Assume $m'\ge0.03$. The following minimization supplies the Robin coefficient.
+\begin{lemma}\label{lem:cap}
+For a nonnegative width $b$ with $\int_0^\infty b\le\alpha$, and an admissible function $G$ with $G(0)=1$,
+\[
+ \int_0^\infty\left(G'^2+\frac{\pi^2G^2}{b^2}\right)\dd y
+ \ge\frac{\sigma_1}{\sqrt\alpha},\qquad
+ \sigma_1=\frac32\left(\frac\pi{\sqrt3}\right)^{1/2}.
+\]
+The constant is sharp.
+\end{lemma}
+\begin{proof}
+Scaling reduces the claim to $\alpha=1$. We may replace $G$ by $|G|$. Put $B=\int G^{2/3}$. H\"older's inequality gives $\int G^2/b^2\ge B^3$. Also, integration of $(G^{4/3})'$ followed by Cauchy--Schwarz gives
+\[
+ 1\le\frac43\left(\int G'^2\right)^{1/2}B^{1/2}.
+\]
+Thus the energy is at least $9/(16B)+\pi^2B^3$. Its minimum occurs at $B^4=3/(16\pi^2)$ and equals $\sigma_1$. Equality is attained by $G(y)=(1-y/Y)_+^{3/2}$ with $Y^4=3/\pi^2$, and by the corresponding width proportional to $G^{2/3}$.
+\end{proof}
+
+Write $u$ for a ground state on $S_c$. Its energy on either cap is at least $\sigma_1\alpha^{-1/2}$ times the squared $L^2$ trace on the adjoining wall, by slicing and Lemma~\ref{lem:cap}. Even reflection of a cap function across the wall gives a whole-plane $H^1$ function supported on a set of area at most $2\alpha$. Faber--Krahn in its support-measure form therefore gives
+\[
+ M_C\le\frac{E_C}{\nu},\qquad \nu=\frac\kappa{2\alpha},
+\]
+for the total cap mass and energy as well. Throughout $0.03\le m'\le m$, one has $\nu>\Lambda_0$.
+
+Let $M$ and $I$ be the mass and energy inside $T$. For either $\widetilde\Lambda=\Lambda$ or $\Lambda_0$, the identity $\lambda(M+M_C)=I+E_C$ implies
+\[
+ \lambda M\ge I+\left(1-\frac{\widetilde\Lambda}{\nu}\right)E_C
+ \ge I+\sigma_{\widetilde\Lambda}(m')\int_{\partial T}u^2,
+\]
+where
+\begin{equation}\label{eq:sigma}
+ \sigma_{\widetilde\Lambda}(m')=
+ \frac{\sigma_1}{\sqrt{a-m'}}
+ \left(1-\frac{2\widetilde\Lambda(a-m')}{\kappa}\right)>0.
+\end{equation}
+We used $\lambda\le\Lambda\le\widetilde\Lambda$. If $M=0$, the cap estimate gives $\lambda\ge\nu$, already a contradiction.
+
+For arbitrary boundaries it is convenient to work with
+\[
+ \mathcal V(D)=\{v\in H^1(T):v=0\text{ a.e. on }T\setminus D\},\quad
+ Q_\sigma(v)=\int_T|\nabla v|^2+\sigma\int_{\partial T}v^2.
+\]
+Zero extension of $u$ belongs to $H^1(\R^2)$, so $u|_T\in\mathcal V(D)$. We have proved
+\begin{equation}\label{eq:robin}
+ \inf_{v\in\mathcal V(D)\setminus\{0\}}
+ \frac{Q_{\sigma_{\widetilde\Lambda}(m')}(v)}{\norm v_2^2}\le\lambda.
+\end{equation}
+
+\subsection{Rearrangement and the boundary window}
+Take $v\in\mathcal V(D)$. First replace it by $|v|$, then by
+$\bigl(v(x,y)^2+v(x,-y)^2\bigr)^{1/2}/\sqrt2$.
+These operations preserve mass and the boundary term and do not increase energy. Rearrange each positive vertical half-fibre decreasingly toward $y=0$, and reflect evenly. The trace at $y=\tau$ becomes the essential infimum on that half-fibre, so its square integral cannot increase. Finally perform horizontal Steiner rearrangement.
+
+These operations preserve the $L^2$ norm and decrease Dirichlet energy. The one-sided rearrangement is performed on a finite interval; it imposes no zero boundary value at its outer endpoint. Horizontal rearrangement can be obtained by polarizations~\cite{BrockSolynin}. These exchange points at the same height and thus apply on a strip. The trace commutes with this rearrangement because $y\mapsto v(\cdot,y)$ is continuous into $L^2(\R)$ and rearrangement is an $L^2$ contraction.
+
+The resulting function is nonnegative and decreases with both $|x|$ and $|y|$. It is supported in the doubly symmetric set
+\[
+ D^*=\{(x,y):|y|<|D^x|/2\},\qquad |D^*|=2m'.
+\]
+Put $w_* = \essinf_{|y|<\tau}c(y)$. The columns of $D^*$ that fill the entire strip form, up to endpoints, an interval of width $w_*$. Hence $2\tau w_*\le2m'$, and the wall traces vanish outside that interval. If $w_*=0$, extension by zero across the walls and Faber--Krahn give
+\[
+ Q_\sigma(v)\ge\frac\kappa{2m'}\norm v_2^2
+ \ge\frac\kappa{2m}\norm v_2^2>\Lambda_0\norm v_2^2.
+\]
+It remains to consider a positive boundary window.
+
+\subsection{Small windows: a perimeter comparison}
+For a chord of length $2\tau$, let $\arc(2\tau,A)$ be the length of the circular arc bounding a segment of area $A$ on one side of the chord. If a doubly symmetric set $U\subset T$ has area $s$ and full-column width $\ell>0$, then
+\begin{equation}\label{eq:perimeter}
+ \Per(U;T)\ge P(\ell,s):=
+ \max\left\{2\arc\left(2\tau,\frac{s-2\tau\ell}{2}\right),
+                  \sqrt{4\pi s}-2\ell\right\}.
+\end{equation}
+The second bound follows by adding the two wall traces to the relative perimeter and applying the isoperimetric inequality. For the first, consider the part to the right of the full columns. Complete it on the other side of the chord by the complementary circular segment. Choose the circle so that the completed set has the same area as the circle. The isoperimetric inequality says that its unknown boundary is no shorter than the missing circular arc. Reflecting gives the factor two. The perimeter includes any vertical boundary left on the chord, so no endpoint segment is discarded.
+
+Apply~\eqref{eq:perimeter} to the level sets of a doubly decreasing $v$. Write $q(s)$ for its decreasing rearrangement in the area variable and $\ell(s)$ for the corresponding wall-trace width. Then $\ell$ is nondecreasing, $0\le\ell\le w_*$ and $2\tau\ell(s)\le s$. Coarea and the layer-cake formula give
+\begin{equation}\label{eq:window-energy}
+ \begin{split}
+ Q_\sigma(v)&\ge\int_0^{A_0}P(\ell(s),s)^2q'(s)^2\dd s
+                   +2\sigma\int_{[0,A_0]}q(s)^2\dd\ell(s),\\
+ \norm v_2^2&=\int_0^{A_0}q(s)^2\dd s,
+ \end{split}
+\end{equation}
+where $A_0\ge|D^*|$ and $q$ is extended by zero. The Stieltjes measure includes jumps; its convention is $\ell(0^-)=0$. At a plateau of $q$, the jump is placed at the right endpoint. This is the convention obtained from the wall layer-cake formula. The full-column width and the positive trace width agree for almost every level; exceptional constant levels do not alter coarea.
+
+The relative perimeter is bounded below by $\min\{\sqrt{4\pi s},4\tau\}>0$ for $s>0$. Thus coarea gives local absolute continuity of $q$ away from zero. One first truncates $v$ at a finite height, so $q$ is bounded, and removes the truncation at the end.
+
+Here is the criterion used for~\eqref{eq:window-energy}. Let $\widetilde P$ be a lower bound for $P$ on a rectangle $0\le s\le A_0$, $0\le\ell\le w$. On $\ell=0$ use $\widetilde P=\sqrt{4\pi s}$. Suppose a continuous, piecewise smooth function $\rho$ satisfies
+\begin{equation}\label{eq:rho}
+ \rho(0,0)=0,\qquad
+ \rho_s\le-\Lambda_0-\frac{\rho^2}{\widetilde P^2},\qquad
+ \rho_\ell\le2\sigma.
+\end{equation}
+Along a nondecreasing path put $g(s)=\rho(s,\ell(s))$. Fill each jump by its vertical segment. The chain rule on the smooth pieces, and integration across these segments, give
+\[
+ \dd g\le-\left(\Lambda_0+\frac{g^2}{\widetilde P^2}\right)\dd s
+            +2\sigma\dd\ell.
+\]
+Use $\widetilde P^2q'^2\ge2gqq'-g^2q^2/\widetilde P^2$ and integrate by parts. The result is
+\[
+ \int\widetilde P^2q'^2+2\sigma\int q^2\dd\ell
+       -\Lambda_0\int q^2\ge0.
+\]
+The endpoint at $A_0$ vanishes since $q(A_0)=0$. This also holds when $A_0$ equals the support area: the perimeter lower bound is positive near that endpoint, so the energy estimate prevents a nonzero jump to the zero extension. For the paths in~\eqref{eq:window-energy}, $\ell(s)\le s/(2\tau)$; local Lipschitz continuity of $\rho$ and $\rho(0,0)=0$ therefore give $\rho(s,\ell(s))=O(s)$. Truncating at $s=\varepsilon$ and passing to the limit handles the origin.
+
+No absolute continuity of $\ell$ is assumed here. On a compact subinterval away from zero, complete each jump of its graph by a vertical segment and approximate this monotone graph by polygonal graphs. The differential inequality holds along every segment. Uniform continuity of $\rho$ and continuity of the truncated $q$ pass the boundary integrals to their Stieltjes limits. This includes the singular continuous part of $\dd\ell$, as well as its atoms. On triangulation edges the tangential derivatives agree, since the adjacent pieces of $\rho$ are continuous there. Thus the comparison applies to the paths supplied by coarea, not only to smooth paths.
+
+The finite certificates verify~\eqref{eq:rho} for all $0.03\le m'\le m$ and $w_*\le0.241$, with $\sigma=\sigma_{\Lambda_0}(m')$. Together with~\eqref{eq:robin}, this contradicts $\lambda\le\Lambda$.
+
+\subsection{Large windows: a one-dimensional comparison}
+For $w_*\ge0.240$, horizontal slicing is more efficient. The horizontal profile $c^*$ of $D^*$ satisfies
+\[
+ c^*(y)\ge0.240,\qquad \int_0^\tau c^*(y)\dd y=m'.
+\]
+The norm-of-slices argument in~\eqref{eq:slicing} gives
+\[
+ Q_\sigma(v)\ge \mu_h[c^*]\norm v_2^2,
+\quad
+ \mu_h[b]=\inf_{f\ne0}
+ \frac{\int_0^\tau(f'^2+\pi^2f^2/b^2)\dd y+\sigma f(\tau)^2}
+      {\int_0^\tau f^2\dd y}.
+\]
+The endpoint at zero is Neumann. No monotonicity assumption on $b$ is needed.
+
+Let $F''=(\pi^2/b^2-\Lambda_0)F$, $F(0)=1$, $F'(0)=0$, and write $(F,F')=r(\sin\theta,\cos\theta)$ with $\theta(0)=\pi/2$. Then
+\begin{equation}\label{eq:prufer-S}
+ \theta'=f(\theta,b):=1+\sin^2\theta\left(\Lambda_0-1-\frac{\pi^2}{b^2}\right).
+\end{equation}
+The condition $\mu_h[b]\le\Lambda_0$ is equivalent to $\theta(\tau)\ge\theta_R:=\pi/2+\arctan\sigma$. Before a zero of $F$, this follows from
+\[
+ Q(\varphi)-\Lambda_0\int\varphi^2
+ =\int F^2\bigl((\varphi/F)'\bigr)^2
+   +\left(\sigma+\frac{F'(\tau)}{F(\tau)}\right)\varphi(\tau)^2.
+\]
+If $F$ has a zero, Sturm comparison gives the same conclusion. The angle cannot cross a multiple of $\pi$ downwards, since its derivative there is one.
+
+A potential function bounds the mass of any trajectory satisfying this terminal condition. If a piecewise constant slope $p(\theta)$ satisfies
+\begin{equation}\label{eq:potential}
+ b-\nu-p(\theta)f(\theta,b)\ge0\qquad(b\ge w),
+\end{equation}
+then on an allowed trajectory segment,
+\[
+ \int b\dd y\ge \nu\,\Delta y+\int_{\theta_{\rm start}}^{\theta_{\rm end}}p(t)\dd t.
+\]
+This remains valid on time intervals spent at a slope discontinuity: there $\theta'=0$ almost everywhere and~\eqref{eq:potential} gives $b\ge\nu$.
+
+To check~\eqref{eq:potential} on an angular cell, put $s=\sin^2\theta$ and minimize
+\[
+ G(p,s)=\min_{b\ge w}\left(b+\frac{p\pi^2s}{b^2}\right)
+                 -\nu-p\bigl(1+(\Lambda_0-1)s\bigr).
+\]
+This is concave in $s$, being an infimum of affine functions. It suffices to check the extreme values of $s$ on the cell. A cell meeting $\pi/2$ must include $s=1$ in this test. The scalar minimum is explicit: with $K=p\pi^2s$, it is $w+K/w^2$ when $K\le0$ or $(2K)^{1/3}\le w$, and otherwise $\frac32(2K)^{1/3}$.
+
+Appendix~\ref{app:stairs} explains how these potentials cover every trajectory, including those that turn around. The eight interval certificates give a mass lower bound strictly greater than $m'$ whenever $\mu_h[c^*]\le\Lambda_0$, with $\sigma=\sigma_\Lambda(m')$. This proves the large-window case. The two window ranges overlap. The range $m'<0.108$ is empty in this case because $0.240\tau=0.108$.
+
+We have covered $m'\le0.03$, $w_*=0$, small positive windows, and large windows. Proposition~\ref{prop:single} follows. Its conclusion is only $\lambda_1(S_c)>12\pi$: the large-window Robin coefficient was derived under $\lambda\le12\pi$. The internal certificate value $37.7$ does not strengthen that conclusion to $\lambda_1(S_c)\ge37.7$.

@@ -1,30 +1,34 @@
-# Pólya-related programmatic proofs
+# Pólya's inequality for the third planar Dirichlet eigenvalue
 
-Research preprint and reproducible proof companion by **s-JoL**, 2026-10-11.
+**Liang Song**
 
-This release contains two results at different verification levels:
+[Read the paper](paper/third-eigenvalue/paper.pdf) · [LaTeX source](paper/third-eigenvalue/main.tex) · [Verification guide](VERIFICATION.md) · [Chinese introduction](README.zh.md)
 
-| Result | Mathematical scope | Machine-checked scope |
-|---|---|---|
-| Twisted tensor Q2 torus / complete Q1 inverse compression | All integer sizes L≥1, real Bloch phases and 0<E≤8, assuming the full pencil is invertible | Exact three-minor factorizations, Bernstein identities and positivity on the entire cosine square, hence all real phases |
-| Third planar Dirichlet eigenvalue | Manuscript argument: &#124;Ω&#124;λ₃(Ω)>12π for every planar open set of finite positive area, multiplicities included | Exact/Arb B,T,S,N certificates and constants; Lean checks explicit rational interfaces, branch coverage and conditional selection logic |
+This repository accompanies a preprint on the inequality
 
-The complete PDE theorem and complete finite-matrix inertia return are **not fully formalized in Lean**. The analytic arguments are in the manuscripts. The all-domain, all-k Pólya problem remains unsolved. No claim of priority or journal acceptance is made. AI assisted derivation, drafting and reconstruction; passing code alone does not establish the unformalized mathematical return.
+$$ |\Omega|\lambda_3(\Omega)>12\pi $$
 
-## Read the proofs
+for every planar open set of finite positive area. Eigenvalues are Dirichlet eigenvalues, counted with multiplicity. The domain may have holes, may be disconnected, and need not be bounded.
 
-- [Preprint overview source](paper/preprint.tex) (PDF compilation not yet confirmed)
-- [Full torus proof](paper/torus.md)
-- [Analytic certificate criteria](paper/certificate-criteria.md)
-- [Short proofs in Chinese](paper/short-proofs.zh.md)
-- [Complete k=3 analytic manuscript](paper/k3.md)
-- [Classical assumptions and references](paper/classical-inputs.md)
-- [Precise Lean coverage](SCOPE.md)
+The proof chooses an area-bisecting line and reflects the two halves. Two estimates for cross-sectional profiles show that either this cut, or a perpendicular bisector, has the required spectral bound. Rearrangement and one-dimensional comparison reduce these estimates to finite rational and interval inequalities.
 
-## Reproduce
+The paper gives the mathematical argument and verification criteria. The computational supplement supplies the certificate arrays, executable checks, and Lean source. This is a research preprint, not a claim of journal acceptance.
 
-Use Python 3.12+ and the official [Lean/elan toolchain](https://lean-lang.org/install/).
-The toolchain is fixed at Lean 4.34.0 and mathlib at commit `5ed2965256430c3649e86755f9576b54eca72435`.
+## Verification
+
+| Material | What it establishes |
+|---|---|
+| [Paper](paper/third-eigenvalue/paper.pdf) | The analytic argument, including the geometric reduction and comparison principles |
+| [Certificate data](certificates) and [replay](scripts/check_k3.py) | Exact rational verification of the pair-profile bound; Arb interval verification of the small-window, large-window and neck bounds |
+| [K3Algebra.lean](K3Algebra.lean) | Nine universal auxiliary theorems: threshold and π bounds, parameter identities, cubic allocation, cap minimization, Robin elimination, Picone algebra and affine comparison |
+| [K3Interfaces.lean](K3Interfaces.lean) | Parameter arithmetic and conditional assembly, with analytic assumptions explicit |
+| [Recorded checks](verification/v0.2.0) | Source hashes, fresh compiler output, certificate results and negative controls |
+
+**The complete spectral/PDE theorem is not yet formalized in Lean.** The Lean files do not define the Dirichlet spectrum of an arbitrary open set or prove the rearrangement, coarea and Sturm steps. Those arguments are in the paper. See [SCOPE.md](SCOPE.md) for the exact boundary. The general Pólya conjecture, for every index, is not claimed here.
+
+## Reproduce the checks
+
+Use Python 3.12 or later and [Lean's official installation](https://lean-lang.org/install/). Lean is fixed at 4.34.0 and mathlib at commit `5ed2965256430c3649e86755f9576b54eca72435`.
 
 ```bash
 python3 -m venv .venv
@@ -32,17 +36,26 @@ source .venv/bin/activate
 python -m pip install -r requirements.txt
 lake update
 lake exe cache get
+lake build
 bash scripts/verify.sh
 ```
 
-The k=3 replay takes several minutes; allow roughly 8 GiB address-space budget for Lean and sufficient disk space for mathlib. Verification writes only to ignored `build/` scratch space and never regenerates shipped certificate inputs. B and the torus checker use exact rational arithmetic; T/S/N use Arb interval arithmetic through python-flint, not a libm error assumption. All gates have negative controls, including a corrupted T node and a false Lean lower bound.
+The numerical checks take several minutes. Each k=3 replay creates a new directory under `build/`; it does not modify the shipped certificate arrays. Positive checks and deliberately false or corrupted controls are both required. A successful run means that the listed checks passed; it is not a replacement for reviewing the analytic argument.
 
-`lake build` builds the two public Lean modules. `scripts/check_lean.py` additionally recompiles each source and audits the printed axioms. Standard Lean axioms `propext`, `Classical.choice`, `Quot.sound` may occur; no custom mathematical axiom or sorry is used.
+To rebuild the paper with Tectonic:
 
-## References and status
+```bash
+python scripts/build_paper.py
+```
 
-Classical inequalities and rearrangement theory are credited in the manuscript; some textbook citations remain chapter-level and are marked as such. Related Pólya results include [Filonov–Levitin–Polterovich–Sher, Pólya's conjecture for Euclidean balls](https://arxiv.org/abs/2203.07696). Schur inertia is classical; see [Haynsworth (1968)](https://doi.org/10.1016/0024-3795(68)90050-5). This companion supplies exact, inspectable certificates rather than claiming these classical tools as new.
+The resulting `paper/third-eigenvalue/paper.pdf` is the document linked above. The article can also be compiled with a standard LaTeX installation from its source directory.
 
-## License
+## Changes from the first release
 
-The newly released companion code and manuscripts are provided under the MIT license. Lean and mathlib are external dependencies with their own licenses. See `THIRD_PARTY.md`.
+Version 0.2.0 adds the English manuscript under Liang Song's name and nine Lean auxiliary theorems. It corrects the Bessel-zero enclosure in the small-window verifier and reruns all nine parameter boxes. It also rounds the paper's displayed mass lower bounds down. The numerical conclusions survive these corrections. Details are in [ERRATA.md](ERRATA.md).
+
+The [earlier torus result](paper/torus.md), its [Lean source](FullTorus.lean), and the v0.1.0 release remain available. They are separate from the third-eigenvalue argument.
+
+## Citation and license
+
+Citation metadata is in [CITATION.cff](CITATION.cff). The manuscript and code are released under the [MIT license](LICENSE); external dependencies retain their own licenses, listed in [THIRD_PARTY.md](THIRD_PARTY.md).

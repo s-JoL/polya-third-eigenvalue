@@ -2,13 +2,18 @@ from pathlib import Path
 import subprocess,re,json,hashlib
 R=Path(__file__).resolve().parent.parent; B=R/'build';B.mkdir(exist_ok=True)
 records=[]
-for name in ['FullTorus','K3Interfaces']:
+for name in ['K3Algebra','K3Interfaces','FullTorus']:
  p=R/(name+'.lean');s=p.read_text()
  assert not re.search(r'\b(sorry|admit|native_decide|unsafe)\b',s)
  assert not re.search(r'^\s*(axiom|opaque)\s',s,re.M)
- out=subprocess.run(['lake','env','lean','-j1','-s8192','-DwarningAsError=true',p.name],cwd=R,capture_output=True,text=True)
+ out=subprocess.run(['lake','env','lean','-DwarningAsError=true','-Ddebug.skipKernelTC=false',p.name],cwd=R,capture_output=True,text=True)
  log=out.stdout+out.stderr;(B/(name+'.log')).write_text(log)
  assert out.returncode==0 and 'sorryAx' not in log,log
+ declared=set(re.findall(r'^theorem\s+(\w+)',s,re.M))
+ printed=set(re.findall(r'^#print axioms\s+(\w+)',s,re.M))
+ assert declared <= printed, 'Each theorem requires an axiom report'
+ reports=re.findall(r"'([^']+)' (?:depends on axioms:|does not depend on any axioms)",log)
+ assert declared <= {n.rsplit('.',1)[-1] for n in reports}
  allowed={'propext','Classical.choice','Quot.sound'}
  for names in re.findall(r'depends on axioms:\s*\[([^\]]*)\]',log):
   assert {n.strip() for n in names.split(',')} <= allowed, names
@@ -16,7 +21,7 @@ for name in ['FullTorus','K3Interfaces']:
 # The actual first minor is 240 at (-1,1); the false lower bound must fail.
 first=next(l for l in (R/'FullTorus.lean').read_text().splitlines() if l.startswith('def minor1 '))
 bad=B/'NegativeControl.lean';bad.write_text('import Mathlib.Basic.Real.Basic\nimport Mathlib.Tactic.NormNum\n'+first+'\nexample : (241:ℝ) ≤ minor1 (-1) 1 := by norm_num [minor1]\n')
-o=subprocess.run(['lake','env','lean','-j1','-s8192','-R',str(B),str(bad)],cwd=R,capture_output=True,text=True)
+o=subprocess.run(['lake','env','lean','-Ddebug.skipKernelTC=false','-R',str(B),str(bad)],cwd=R,capture_output=True,text=True)
 (B/'NegativeControl.log').write_text(o.stdout+o.stderr)
 assert o.returncode!=0 and 'unsolved goals' in o.stdout+o.stderr
 (B/'lean-receipt.json').write_text(json.dumps({'status':'PASS','fresh_kernel_checks':True,'records':records,'negative_control_rejected':True,'full_pde_formalization':False},indent=2))

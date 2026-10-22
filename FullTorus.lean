@@ -258,6 +258,10 @@ theorem all_real_phases (s t : ℝ) :
 #print axioms minor2_factored
 #print axioms minor3_factored
 #print axioms all_real_phases
+#print axioms minor1_identity
+#print axioms minor2_identity
+#print axioms minor3_identity
+#print axioms all_cosine_box
 
 end PolyaAudit
 

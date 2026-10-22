@@ -1,0 +1,10 @@
+'K3Paper.target_below_certificate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'K3Paper.checker_pi_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'K3Paper.parameter_identities' depends on axioms: [propext, Classical.choice, Quot.sound]
+'K3Paper.angle_budget' depends on axioms: [propext, Classical.choice, Quot.sound]
+'K3Paper.cubic_allocation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'K3Paper.cap_minimization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'K3Paper.robin_elimination' depends on axioms: [propext, Classical.choice, Quot.sound]
+'K3Paper.picone_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'K3Paper.affine_rectangle' depends on axioms: [propext, Classical.choice, Quot.sound]
+warning: batteries: repository '<checkout>/.lake/packages/batteries' has local changes

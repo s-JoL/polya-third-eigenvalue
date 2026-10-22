@@ -23,8 +23,12 @@ def arbq(x):
 
 # ---------------------------------------------------------------- sigma' (arb lower bound), same formula as star-cert engine
 def sigma_prime_arb(mprime, a='0.2595', lam='37.7'):
-    j0 = arb('2.404825557695772768621631879326454643124244909145')
-    j0 = arb(j0.mid(), arb('1e-45'))
+    # Do not discard the conversion radius with mid(): at 100 bits its
+    # rounding error can be much larger than an attached radius of 1e-45.
+    jlo = arb('2.40482555769577276')
+    jhi = arb('2.40482555769577277')
+    assert jlo.bessel_j(0) > 0 and jhi.bessel_j(0) < 0
+    j0 = jlo.union(jhi)
     kappa = PI * j0 ** 2
     al = arb(a) - arb(mprime)
     s1 = arb(3) / 2 * (PI / arb(3).sqrt()).sqrt()

@@ -1,0 +1,11 @@
+{
+  "python": "3.14.4",
+  "packages": {
+    "numpy": "2.5.3",
+    "python-flint": "0.9.0"
+  },
+  "lean": "4.34.0",
+  "mathlib": "5ed2965256430c3649e86755f9576b54eca72435",
+  "local_cache_note": "The local run used an existing dependency cache; Lake reported local modifications in Batteries. A fresh pinned dependency check is also run in GitHub Actions.",
+  "full_pde_formalization": false
+}

@@ -1,0 +1,21 @@
+{
+  "certificates/torus.json": "7510af9133aaf3feb99ff5f338787e48b8264396093c8d9e385a279c39172a6b",
+  "certificates/T/ctcert.py": "eac232d25269c7f3e14e0c9cb321080fc18432cfb34d279239969416ef6f48fa",
+  "certificates/T/ctlib.py": "082853f3b59fa54166c2ebf0dedfe16d059f3e14ae3a241a6ca6a26f307f59b5",
+  "certificates/T/ctangle.py": "3a334edeaa5fd9299e03832889d0900fa93d971595758ea2766c5d357303d312",
+  "certificates/S/cert_common.py": "497dd96de2c915eb85e142e11cdc1abba7bf901b56ece854b9723d1d62e89fb3",
+  "certificates/S/cert_slices2.py": "101eb3275f6d017d9e7a6b4e2b37de4610d0c1eed4270478ab7843d4d578be01",
+  "certificates/S/cert_slice.py": "09763aff24f5e32499e1f8027235fa9363133ca3c41d87ec88e17b33b2bded89",
+  "certificates/S/cert_riccati.py": "3fce81c15bcb9dec2e55b8b966937d6492f71e98ba8bcb93119b7e95babbec78",
+  "certificates/B/wE3_W090_32_snap.npz": "5513e5fec2523180c7b4cd385d50fdebdedbb9721b0839f25161bfdb32da6d79",
+  "certificates/B/certE_exact.py": "25c6d3c0687ebe506abb4319423e14cf0cd9d3e8e41e5ea59059475727461b67",
+  "certificates/T/barriers/theta_w0.241_0.2200_0.2250_2000x48.npz": "d19c85eb69da12829123a34c024e26d73401ac2b675ea23a27171fb9e250ebde",
+  "certificates/T/barriers/theta_w0.241_0.2280_0.2282_2000x48.npz": "9a7ad731382172a8c96b8f5aff355d54df2ef25b24209fa0100c8cfa9abecf70",
+  "certificates/T/barriers/theta_w0.241_0.2100_0.2200_2000x48.npz": "c67f9609037126b71f8226b47ee796c50880b780caa2510b6fc8e81007d974d7",
+  "certificates/T/barriers/theta_w0.241_0.1900_0.2100_2000x48.npz": "4fd5a551eb094e78a8eea594b517a94578dbd9e8f8d12328155791f01c79bf02",
+  "certificates/T/barriers/theta_w0.241_0.0300_0.1000_2000x48.npz": "e29d0508a71a15a2f82c7a3cbe994ec336743ab35da34d0155b05902a937a840",
+  "certificates/T/barriers/theta_w0.241_0.2270_0.2280_2000x48.npz": "211dea9bfe66695e8762c34273462ef6b15932b4027a0d34af074de94a10f757",
+  "certificates/T/barriers/theta_w0.241_0.2250_0.2270_2000x48.npz": "a754d7bc3d510904da7003d85d5e0c079046b175d6fc24ea53207f4debef674d",
+  "certificates/T/barriers/theta_w0.241_0.1500_0.1900_2000x48.npz": "b868c8c03c9fbae0da736050272c0eea22d8fb9cc6ecdb0f88c118f86c7755d3",
+  "certificates/T/barriers/theta_w0.241_0.1000_0.1500_2000x48.npz": "b4dd3f582361f20e5b15131846045a3a6c25e3d6a3a74c769882da5566c3e4f5"
+}

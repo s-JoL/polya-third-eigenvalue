@@ -1,6 +1,6 @@
-name = "polya_programmatic_proofs"
-version = "0.1.0"
-defaultTargets = ["FullTorus", "K3Interfaces"]
+name = "polya_third_eigenvalue"
+version = "0.2.0"
+defaultTargets = ["K3Algebra", "K3Interfaces", "FullTorus"]
 [[require]]
 name = "mathlib"
 git = "https://github.com/leanprover-community/mathlib4.git"
@@ -9,3 +9,5 @@ rev = "5ed2965256430c3649e86755f9576b54eca72435"
 name = "FullTorus"
 [[lean_lib]]
 name = "K3Interfaces"
+[[lean_lib]]
+name = "K3Algebra"

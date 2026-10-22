@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "B_tetrahedra": 8664,
+  "B_grid_and_indices_checked": true,
+  "T_parameter_boxes": 9,
+  "T_full_interval_cover_checked": true
+}

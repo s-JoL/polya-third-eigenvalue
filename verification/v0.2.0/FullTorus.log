@@ -1,0 +1,12 @@
+'PolyaAudit.minor1_positive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PolyaAudit.minor2_positive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PolyaAudit.minor3_positive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PolyaAudit.minor1_factored' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PolyaAudit.minor2_factored' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PolyaAudit.minor3_factored' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PolyaAudit.all_real_phases' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PolyaAudit.minor1_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PolyaAudit.minor2_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PolyaAudit.minor3_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PolyaAudit.all_cosine_box' depends on axioms: [propext, Classical.choice, Quot.sound]
+warning: batteries: repository '<checkout>/.lake/packages/batteries' has local changes

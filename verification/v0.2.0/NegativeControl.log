@@ -1,0 +1,3 @@
+<checkout>/build/NegativeControl.lean:4:37: error: unsolved goals
+⊢ False
+warning: batteries: repository '<checkout>/.lake/packages/batteries' has local changes

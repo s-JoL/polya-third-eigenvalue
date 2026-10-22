@@ -111,7 +111,7 @@
       "configFile": "lakefile.lean"
     }
   ],
-  "name": "polya_programmatic_proofs",
+  "name": "polya_third_eigenvalue",
   "lakeDir": ".lake",
   "fixedToolchain": true
 }

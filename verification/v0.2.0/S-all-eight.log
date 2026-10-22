@@ -1,0 +1,11 @@
+[SLICE] L0=37.7 w=0.240 sigma'>=sigma'(0.108) mass<=0.15 : min-mass >= 0.2100009  dip=0.234418 top=0.229545  margin=6.000e-02  CERTIFIED  (pi/2-cells [(1.5707963267948966, 1.5711962041464296)]; 149s)
+[SLICE] L0=37.7 w=0.240 sigma'>=sigma'(0.15) mass<=0.18 : min-mass >= 0.2284446  dip=0.260723 top=0.229535  margin=4.844e-02  CERTIFIED  (pi/2-cells [(1.5707963267948966, 1.5711962993937139)]; 77s)
+[SLICE] L0=37.7 w=0.240 sigma'>=sigma'(0.18) mass<=0.20 : min-mass >= 0.2287313  dip=0.280299 top=0.229527  margin=2.873e-02  CERTIFIED  (pi/2-cells [(1.5707963267948966, 1.5711962743727057)]; 55s)
+[SLICE] L0=37.7 w=0.240 sigma'>=sigma'(0.20) mass<=0.21 : min-mass >= 0.2289549  dip=0.292898 top=0.229521  margin=1.895e-02  CERTIFIED  (pi/2-cells [(1.5707963267948966, 1.5711962674431204)]; 38s)
+[SLICE] L0=37.7 w=0.240 sigma'>=sigma'(0.21) mass<=0.22 : min-mass >= 0.2290835  dip=0.298761 top=0.229519  margin=9.084e-03  CERTIFIED  (pi/2-cells [(1.5707963267948966, 1.5711962857223967)]; 31s)
+[SLICE] L0=37.7 w=0.240 sigma'>=sigma'(0.22) mass<=0.224 : min-mass >= 0.2292308  dip=0.304089 top=0.229515  margin=5.231e-03  CERTIFIED  (pi/2-cells [(1.5707963267948966, 1.571196223947315)]; 25s)
+[SLICE] L0=37.7 w=0.240 sigma'>=sigma'(0.224) mass<=0.2265 : min-mass >= 0.2292970  dip=0.305999 top=0.229514  margin=2.797e-03  CERTIFIED  (pi/2-cells [(1.5707963267948966, 1.5711962804222293)]; 24s)
+[SLICE] L0=37.7 w=0.240 sigma'>=sigma'(0.2265) mass<=0.2282 : min-mass >= 0.2293412  dip=0.307106 top=0.229513  margin=1.141e-03  CERTIFIED  (pi/2-cells [(1.5707963267948966, 1.5711962596514129)]; 22s)
+ALL DONE (420s)
+
+STDERR

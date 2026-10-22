@@ -1,0 +1,65 @@
+\section{The pair-profile estimate}\label{sec:two}
+We prove Proposition~\ref{prop:pair} by showing that two profiles with $\mu[c_i]<\Lambda_0$ and total half-line mass at most $1/2$ must have excess above $0.9$ greater than $0.0872$.
+
+For positive bounded profiles on a finite interval, use $t=\sqrt{\Lambda_0}\,y$, $\ell_i=\sqrt{\Lambda_0}\,c_i$ and the scaled Pr\"ufer angles
+\[
+ \theta_i'=1-\frac{\pi^2\sin^2\theta_i}{\ell_i^2},\qquad \theta_i(0)=\pi/2.
+\]
+Sturm theory~\cite{Zettl} says that $\mu[c_i]<\Lambda_0$ forces each angle to reach $\pi$ in finite time. General profiles follow by truncating to an interval containing compactly supported test functions, capping large widths, and adding a small positive width. The strict Rayleigh inequalities survive these changes; the extra mass and excess tend to zero. The certificate below has strict slack in both the initial state and final excess, so this approximation does not lose the conclusion.
+
+Set $C=3\sqrt3\pi/2$, $U_i=1+\cos\theta_i$ and $X_i=\sin\theta_i$. Before the first angle reaches $\pi$, $0<\theta_i<\pi$, so $X_i\ge0$. The elementary inequality
+\begin{equation}\label{eq:angle-budget}
+ \ell_i\ge C X_i\theta_i'
+\end{equation}
+follows, on writing $\ell_i=\sqrt3\pi z$, from $2z+X_i^3/z^2\ge3X_i$; the difference is $(z-X_i)^2(2z+X_i)/z^2$.
+
+Let $M_*$ be the allowed physical half-line mass, initially $1/2$, and let $M(t)$ be the mass already used. Introduce
+\[
+ s(t)=\frac{\Lambda_0}{C}\bigl(M_*-M(t)\bigr)-U_1(t)-U_2(t).
+\]
+By~\eqref{eq:angle-budget}, $s$ is nonincreasing. It is nonnegative along a feasible trajectory: applying~\eqref{eq:angle-budget} to each angle's remaining journey to $\pi$ bounds the remaining mass below by $C(U_1+U_2)/\Lambda_0$. At the start,
+\[
+ s(0)=\frac{\Lambda_0}{3\sqrt3\pi}-2.
+\]
+Thus the trajectory lies in $[0,2]^2\times[0,s_{\rm top}]$, where the certificate chooses $s_{\rm top}$ slightly larger than this initial value.
+
+Let $w(U_1,U_2,s)$ be continuous and affine on each tetrahedron of a triangulation. Write its gradient on a tetrahedron as $(q_1,q_2,-k)$, and put $P_i=q_i+k$. Require $k,P_1,P_2\ge0$ and $w\le0$ on each face $U_i=0$. Put
+\[
+ \omega=\frac{\sqrt{\Lambda_0}\,0.9}{\sqrt3\pi},\qquad
+ A=P_1^{1/3}X_1+P_2^{1/3}X_2.
+\]
+The remaining cell condition is
+\begin{equation}\label{eq:HJB}
+ 3(P_1X_1+P_2X_2)\le\Psi_k(A),
+\end{equation}
+where
+\[
+\Psi_k(A)=
+\begin{cases}
+3k^{2/3}A,&A\le k^{1/3}\omega,\\
+2k\omega+A^3/\omega^2,&k^{1/3}\omega\le A\le(k+1/2)^{1/3}\omega,\\
+3(k+1/2)^{2/3}A-\omega,&A\ge(k+1/2)^{1/3}\omega.
+\end{cases}
+\]
+To see why this is sufficient, write $\ell_i=\sqrt3\pi z_i$ and $Z=z_1+z_2$. Direct differentiation shows that the required inequality along a trajectory is
+\[
+ \sum_i P_i\left(3X_i-\frac{X_i^3}{z_i^2}\right)
+ \le 2kZ+(Z-\omega)_+.
+\]
+At fixed $Z$, H\"older's inequality gives
+\[
+ \inf_{z_1+z_2=Z}\sum_i\frac{P_iX_i^3}{z_i^2}=\frac{A^3}{Z^2}.
+\]
+Minimizing $A^3/Z^2+2kZ+(Z-\omega)_+$ over $Z>0$ gives exactly the three branches of $\Psi_k$. Thus~\eqref{eq:HJB} proves, for every control,
+\[
+ \frac{\dd}{\dd t}\left(\frac{2C}{\Lambda_0}w\right)
+ \ge-\frac{(\ell_1+\ell_2-\sqrt{\Lambda_0}\,0.9)_+}{\Lambda_0}.
+\]
+The chain rule also holds when the trajectory follows a cell face: continuity of the affine pieces makes their tangential derivatives agree.
+
+Stop when the first angle reaches $\pi$. The terminal value of $w$ is nonpositive. Since $w_s=-k\le0$, its initial value is at least $w(1,1,s_{\rm top})$. Integration gives
+\[
+ \int_0^\infty(c_1+c_2-0.9)_+\dd y
+ \ge\frac{3\sqrt3\pi}{\Lambda_0}w(1,1,s_{\rm top}).
+\]
+The rational checker verifies that this lower bound exceeds $0.0879293$. This is strictly larger than $0.0872$, proving Proposition~\ref{prop:pair}.

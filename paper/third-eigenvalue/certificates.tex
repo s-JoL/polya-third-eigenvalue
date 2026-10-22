@@ -1,0 +1,82 @@
+\section{The finite certificates}\label{sec:cert}
+It remains to verify a finite collection of inequalities. We describe the objects being certified, the exact tests applied to them, and the resulting bounds. The certificate arrays are supplied as supplementary data. Their construction plays no part in verification: the tests use the fixed arrays and do not run an optimizer.
+
+\subsection{The pair-profile certificate}
+The pair-profile certificate is a continuous piecewise affine function on 8664 Kuhn tetrahedra. The underlying box grid has $38\times38\times1$ cells, with $U_1,U_2\in[0,2]$ and
+\[
+ s_{\rm top}=\frac{2796334405517737}{9007199254740992}.
+\]
+Each box is divided into its six coordinate-order tetrahedra. The nodal values are first adjusted by subtracting $10^{-4}(U_1+U_2+s)$ and rounded down to multiples of $2^{-44}$. Values on a terminal face are replaced by their minimum with zero. These adjusted values define $w$. The finite test verifies the signs of $k,P_i$, both terminal faces, and the initial-state bound; it also checks $s_{\rm top}>\Lambda_0/(3\sqrt3\pi)-2$ with rational bounds.
+
+The function $\Psi_k$ is convex. Each tangent to its cubic branch, together with its two linear branches, is a global supporting line. Rational lower bounds for cube roots and an upper bound for $\omega$ turn~\eqref{eq:HJB} into a sufficient affine inequality on a rectangle of $(X_1,X_2)$ values. Its minimum is at a corner. If no available supporting line proves the inequality on a rectangle, that rectangle is bisected. Every final comparison is between exact rational numbers. The complete calculation uses 8884 such rectangles and gives
+\[
+ \frac{3\sqrt3\pi}{\Lambda_0}w(1,1,s_{\rm top})>0.0879293>0.0872.
+\]
+
+The checker uses
+\[
+ 3.14159265358979<\pi<3.14159265358980.
+\]
+These inequalities follow by substituting the alternating arctangent series into Machin's identity $\pi=16\arctan(1/5)-4\arctan(1/239)$ and bounding each remainder by its first omitted term. Integer square and cube roots similarly give rational enclosures for the algebraic constants. Floating-point estimates are used only to choose candidate supporting lines; the supporting-line condition and the final corner comparisons are then checked exactly.
+Binary64 entries in the certificate are interpreted as exact dyadic rationals. The stored width and energy are slightly above $0.9$ and $37.7$. This is conservative: excess over a larger width is no larger, and excluding two spectral bottoms below a larger energy implies the stated bound at $37.7$. The finite test uses the exact stored parameters, rather than identifying them with the displayed decimals.
+
+\subsection{The small-window certificates}
+The barrier is $\rho=K\cot\Theta$, with $K=20$ and \emph{$\Theta$} continuous and affine on each triangle. The function $\rho$ itself is not piecewise affine. The angular conditions are
+\[
+ \Theta_s\ge\frac{\Lambda_0\sin^2\Theta+K^2\cos^2\Theta/\widetilde P^2}{K},
+ \qquad
+ \Theta_\ell\ge-\frac{2\sigma}{K}\sin^2\Theta,
+ \qquad 0<\Theta<\pi.
+\]
+They imply~\eqref{eq:rho}. On each triangle, interval bounds for sine and cosine and a lower bound for $\widetilde P$ verify these inequalities throughout the triangle.
+
+For the arc bound, a circular segment has the parametrization
+\[
+ A(\phi)=\tau^2\frac{\phi-\sin\phi\cos\phi}{\sin^2\phi},
+ \qquad L(\phi)=\frac{2\tau\phi}{\sin\phi}.
+\]
+On $0\le\phi\le\pi/2$, $\dd L/\dd A=\sin\phi/\tau$ increases, so tangents are lower bounds. The checker encloses their coefficients with Arb and takes cellwise lower bounds. The required segment areas satisfy $A\le m<\pi\tau^2/2$, so they stay in this convex range. Outside the physical constraint $s\ge2\tau\ell$, the segment area is replaced by its positive part; on physical paths the formula is unchanged.
+
+The origin is treated separately. Its nodal value is exactly $\pi/2$, not a floating-point approximation. On the bottom edge of the first triangle, $|\cos\Theta|\le|\Theta-\pi/2|=\Theta_s s$, while $\widetilde P^2=4\pi s$. This removes the apparent singularity. Off that edge, the perimeter lower bound is at least $4\tau$ in the first cell. In other bottom-row cells, the lower bound is the smaller of the zero-window and positive-window bounds.
+
+The Bessel constant uses the interval
+\[
+ 2.40482555769577276<j_{0,1}<2.40482555769577277.
+\]
+Arb verifies opposite signs of $J_0$ at the endpoints. To identify the first zero, the alternating series gives $J_1(x)\ge x(1-x^2/8)/2>0$ up to the right endpoint; hence $J_0'=-J_1<0$. The checker retains the full interval, including decimal-conversion error.
+
+Nine mass intervals cover $[0.03,0.2282]$, with endpoints
+\[
+ .03,\ .10,\ .15,\ .19,\ .21,\ .22,\ .225,\ .227,\ .228,\ .2282.
+\]
+On $[m_1,m_2]$, take $A_0=2m_2$, $w=\min\{0.241,m_2/\tau\}$ and a lower bound for $\sigma_{\Lambda_0}(m_1)$. Monotonicity of~\eqref{eq:sigma} makes this conservative for every $m'$ in the interval. Each rectangular grid has $2000\times48$ cells, split along their diagonals into 192000 triangles. Interval evaluation verifies both angular inequalities on every triangle. The calculation uses Arb for the trigonometric bounds, with no assumed error estimate for platform trigonometric functions.
+
+\subsection{The large-window and neck certificates}
+For the large-window test, the lower bounds on required mass are as follows. The displayed bounds have been rounded down.
+\begin{center}
+\begin{tabular}{ccc}\toprule
+Mass interval & Required mass at least & Width bound\\\midrule
+$[.108,.15]$ & $.210000$ & $.240$\\
+$[.15,.18]$ & $.228444$ & $.240$\\
+$[.18,.20]$ & $.228731$ & $.240$\\
+$[.20,.21]$ & $.228954$ & $.240$\\
+$[.21,.22]$ & $.229083$ & $.240$\\
+$[.22,.224]$ & $.229230$ & $.240$\\
+$[.224,.2265]$ & $.229296$ & $.240$\\
+$[.2265,.2282]$ & $.229341$ & $.240$\\\bottomrule
+\end{tabular}
+\end{center}
+Every bound exceeds the upper endpoint of its mass interval. Candidate slopes are chosen numerically, then independently tested by interval evaluation of~\eqref{eq:potential}. The cell containing the true $\pi/2$ includes the value $\sin^2\theta=1$. Interval-to-floating conversions used in bounds are rounded outwards and checked; the final positivity test uses Arb intervals.
+
+For the neck estimate, the Riccati function starts with the disk solution
+\[
+ \zeta(s)=2\pi X\frac{J_1(X)}{J_0(X)},\qquad X=\sqrt{Ls/\pi},
+\]
+on $0\le s\le2m_0$. The checker verifies that there is no pole there. On each subsequent cell, a lower bound $I\ge d>0$ gives the explicit majorant
+\[
+ d\sqrt L\tan\left(\frac{\sqrt L}{d}(s-s_i)
+                +\arctan\frac{\zeta(s_i)}{d\sqrt L}\right).
+\]
+Its upper interval endpoint initializes the next cell. Upward jumps are allowed by the comparison principle. There are 100000 cells.
+
+All comparisons use outward-rounded intervals or exact rationals. An interval containing zero is inconclusive and is never counted as a positive lower bound. As implementation checks, the calculation is repeated with deliberately unsupported stronger bounds and with one corrupted barrier node; these tests are rejected. Such rejection tests the calculation, not the truth of the stronger mathematical assertion.
